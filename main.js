@@ -25,6 +25,7 @@ let moveBackward = false;
 let moveLeft = false;
 let moveRight = false;
 let canJump = false;
+let sprint = false;
 let prevTime = performance.now();
 const velocity = new THREE.Vector3();
 const direction = new THREE.Vector3();
@@ -85,6 +86,9 @@ const onKeyDown = function ( event ) {
             canJump = false;
             break;
 
+        case 'ShiftLeft':
+            sprint = true;
+            break;
     }
 
 };
@@ -113,6 +117,9 @@ const onKeyUp = function ( event ) {
             moveRight = false;
             break;
 
+        case 'ShiftLeft':
+            sprint = false;
+            break;
     }
 
 };
@@ -274,8 +281,14 @@ function animate() {
         direction.x = Number( moveRight ) - Number( moveLeft );
         direction.normalize(); // this ensures consistent movements in all directions
 
-        if ( moveForward || moveBackward ) velocity.z -= direction.z * 400.0 * delta;
-        if ( moveLeft || moveRight ) velocity.x -= direction.x * 400.0 * delta;
+        if (!sprint) {
+            if ( moveForward || moveBackward ) velocity.z -= direction.z * 100.0 * delta;
+            if ( moveLeft || moveRight ) velocity.x -= direction.x * 100.0 * delta;
+        } 
+        else {
+            if ( moveForward || moveBackward ) velocity.z -= direction.z * 250.0 * delta;
+            if ( moveLeft || moveRight ) velocity.x -= direction.x * 250.0 * delta;
+        }
 
         if ( onObject === true ) {
 
@@ -289,10 +302,10 @@ function animate() {
 
         controls.getObject().position.y += ( velocity.y * delta ); // new behavior
 
-        if ( controls.getObject().position.y < 1.7 ) {
+        if ( controls.getObject().position.y < 1.1 ) {
 
             velocity.y = 0;
-            controls.getObject().position.y = 1.5;
+            controls.getObject().position.y = 1.1;
 
             canJump = true;
 
