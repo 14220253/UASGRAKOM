@@ -20,12 +20,15 @@ const controls = new PointerLockControls(camera, renderer.domElement);
 
 const objects = [];
 let raycaster;
+
 let moveForward = false;
 let moveBackward = false;
 let moveLeft = false;
 let moveRight = false;
 let canJump = false;
 let sprint = false;
+var headBobTimer = 0;
+
 let prevTime = performance.now();
 const velocity = new THREE.Vector3();
 const direction = new THREE.Vector3();
@@ -33,6 +36,8 @@ const vertex = new THREE.Vector3();
 const color = new THREE.Color();
 const blocker = document.getElementById( 'blocker' );
 const instructions = document.getElementById( 'instructions' );
+
+var deltaFOV = 0.2;
 
 
 instructions.addEventListener( 'click', function () {
@@ -82,12 +87,12 @@ const onKeyDown = function ( event ) {
             break;
 
         case 'Space':
-            if ( canJump === true ) velocity.y += 30;
+            if ( canJump === true ) velocity.y += 30; //jump distance
             canJump = false;
             break;
 
         case 'ShiftLeft':
-            sprint = true;
+            sprint = true;  
             break;
     }
 
@@ -248,6 +253,7 @@ scene.add(directionalLightHelper);
 // 	earth.add( object );
 // } );
 
+
 var clock = new THREE.Clock();
 function animate() {
     renderer.render(scene, camera);
@@ -257,6 +263,8 @@ function animate() {
 	// const delta = clock.getDelta();
 
 	// if ( mixer ) mixer.update( delta );
+
+
 
     const time = performance.now();
 
@@ -275,21 +283,32 @@ function animate() {
         velocity.x -= velocity.x * 10.0 * delta;
         velocity.z -= velocity.z * 10.0 * delta;
 
+        //jump fall speed
         velocity.y -= 9.8 * 10.0 * delta; // 100.0 = mass
 
         direction.z = Number( moveForward ) - Number( moveBackward );
         direction.x = Number( moveRight ) - Number( moveLeft );
         direction.normalize(); // this ensures consistent movements in all directions
 
+        //left right
         if (!sprint) {
             if ( moveForward || moveBackward ) velocity.z -= direction.z * 100.0 * delta;
             if ( moveLeft || moveRight ) velocity.x -= direction.x * 100.0 * delta;
+            
+            if (camera.fov > 75)
+                camera.fov -= deltaFOV;
+                camera.updateProjectionMatrix();   
         } 
         else {
             if ( moveForward || moveBackward ) velocity.z -= direction.z * 250.0 * delta;
             if ( moveLeft || moveRight ) velocity.x -= direction.x * 250.0 * delta;
+
+            if (camera.fov < 85)
+            camera.fov += deltaFOV;
+            camera.updateProjectionMatrix();   
         }
 
+        //collision dengan floor
         if ( onObject === true ) {
 
             velocity.y = Math.max( 0, velocity.y );
@@ -299,16 +318,25 @@ function animate() {
 
         controls.moveRight( - velocity.x * delta / 2);
         controls.moveForward( - velocity.z * delta / 2);
+        //headbob
+        if (moveForward || moveBackward || moveLeft || moveRight) {
+            headBobTimer += delta;
+            camera.position.y += Math.sin(headBobTimer) / 10;
+        }
+        else {
+            headBobTimer = 0;
+            camera.position.y = 1.1;
+        }
 
         controls.getObject().position.y += ( velocity.y * delta ); // new behavior
 
+        //minimal y distance from ground
         if ( controls.getObject().position.y < 1.1 ) {
 
             velocity.y = 0;
             controls.getObject().position.y = 1.1;
 
             canJump = true;
-
         }
 
     }
