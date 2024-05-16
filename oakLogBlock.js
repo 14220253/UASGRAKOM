@@ -4,8 +4,8 @@ export class OakLogBlock {
     constructor(blockSize) {
         this.geometry = this.createGeometry(blockSize, blockSize, blockSize);
         this.material = this.createMaterial(
-        '/THREEProject/resources/oakLogBlock/oakLogSide.webp',
-        '/THREEProject/resources/oakLogBlock/oakLogTopBottom.webp');
+        '..ct/resources/oakLogBlock/oakLogSide.webp',
+        '../resources/oakLogBlock/oakLogTopBottom.webp');
         this.object = this.createObject(this.geometry, this.material);
         this.object.castShadow = true;
         this.object.receiveShadow = true;

@@ -4,9 +4,9 @@ export class GrassBlock {
     constructor(blockSize) {
         this.geometry = this.createGeometry(blockSize, blockSize, blockSize);
         this.material = this.createMaterial(
-        '/THREEProject/resources/grassBlock/side.jpg',
-        '/THREEProject/resources/grassBlock/top.jpg',
-        '/THREEProject/resources/grassBlock/bottom.jpg');
+        '../resources/grassBlock/side.jpg',
+        '../resources/grassBlock/top.jpg',
+        '../resources/grassBlock/bottom.jpg');
         this.object = this.createObject(this.geometry, this.material);
         this.object.castShadow = true;
         this.object.receiveShadow = true;

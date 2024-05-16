@@ -4,7 +4,7 @@ export class OakLeavesBlock {
     constructor(blockSize) {
         this.geometry = this.createGeometry(blockSize, blockSize, blockSize);
         this.material = this.createMaterial(
-        '/THREEProject/resources/oakLeavesBlock/Oak_Leaves_(carried_texture)_BE1.webp');
+        '../resources/oakLeavesBlock/Oak_Leaves_(carried_texture)_BE1.webp');
         this.object = this.createObject(this.geometry, this.material);
         this.object.castShadow = true;
         this.object.receiveShadow = true;

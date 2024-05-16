@@ -4,9 +4,9 @@ export class JackOLanternBlock {
     constructor(blockSize) {
         this.geometry = this.createGeometry(blockSize, blockSize, blockSize);
         this.material = this.createMaterial(
-        '/THREEProject/resources/jackOLanternBlock/jackOLanternSide.webp',
-        '/THREEProject/resources/jackOLanternBlock/jackOLanternTop.webp',
-        '/THREEProject/resources/jackOLanternBlock/jackOLanternFace.webp');
+        '../resources/jackOLanternBlock/jackOLanternSide.webp',
+        '../resources/jackOLanternBlock/jackOLanternTop.webp',
+        '../resources/jackOLanternBlock/jackOLanternFace.webp');
         this.object = this.createObject(this.geometry, this.material);
         this.object.castShadow = true;
         this.object.receiveShadow = true;
