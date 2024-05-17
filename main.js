@@ -284,10 +284,10 @@ const oakLogBlockObject = new OakLogBlock(1);
 oakLogBlockObject.position.x = 8;
 scene.add(oakLogBlockObject);
 
-// oakTree
-const oakTreeObject = new OakTree(1, 2);
-oakTreeObject.position.x = 10;
-// scene.add(oakTreeObject); 
+// // oakTree
+// const oakTreeObject = new OakTree(1, 2);
+// oakTreeObject.position.x = 10;
+// // scene.add(oakTreeObject); 
 
 
 // floor
