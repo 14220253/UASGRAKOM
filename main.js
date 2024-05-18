@@ -3,6 +3,12 @@ import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
+import { GrassBlock } from './grassBlock.js';
+import { PumpkinBlock } from './pumpkinBlock.js';
+import { JackOLanternBlock } from './jackOLanternBlock.js';
+import { OakLeavesBlock } from './oakLeavesBlock.js';
+import { OakLogBlock } from './oakLogBlock.js';
+import { OakTree } from './oakTree.js';
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -145,44 +151,44 @@ window.addEventListener( 'resize', onWindowResize );
 raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ), 0, 10 );
 
 
-var planeGeo = new THREE.PlaneGeometry(400, 400);
-var planeMat = new THREE.MeshPhongMaterial({color: 0x777777, side:THREE.DoubleSide});
-var plane = new THREE.Mesh(planeGeo, planeMat);
-scene.add(plane);
-plane.rotation.set(Math.PI/2, 0, 0);
-plane.position.set(0, 0, 0);
+// var planeGeo = new THREE.PlaneGeometry(400, 400);
+// var planeMat = new THREE.MeshPhongMaterial({color: 0x777777, side:THREE.DoubleSide});
+// var plane = new THREE.Mesh(planeGeo, planeMat);
+// scene.add(plane);
+// plane.rotation.set(Math.PI/2, 0, 0);
+// plane.position.set(0, 0, 0);
 
-plane.castShadow = true;
-plane.receiveShadow = true;
+// plane.castShadow = true;
+// plane.receiveShadow = true;
 
-var sunGeo = new THREE.SphereGeometry(1, 10, 10);
-var sunMaterial = new THREE.MeshPhongMaterial({color: 0xffff33});
-var sun = new THREE.Mesh(sunGeo, sunMaterial);
-scene.add(sun);
-sun.position.set(5, 5, 0)
-sun.scale.set(0.5, 0.5,0.5);
-sun.castShadow = true;
-sun.receiveShadow = true;
+// var sunGeo = new THREE.SphereGeometry(1, 10, 10);
+// var sunMaterial = new THREE.MeshPhongMaterial({color: 0xffff33});
+// var sun = new THREE.Mesh(sunGeo, sunMaterial);
+// scene.add(sun);
+// sun.position.set(5, 5, 0)
+// sun.scale.set(0.5, 0.5,0.5);
+// sun.castShadow = true;
+// sun.receiveShadow = true;
 
-var earthGeo = new THREE.SphereGeometry(1, 10, 10);
-var earthMaterial = new THREE.MeshPhongMaterial({color: 0x33ff33});
-var earth = new THREE.Mesh(earthGeo, earthMaterial);
-sun.add(earth);
-earth.position.set(5, 0, 0);
-earth.scale.set(0.8, 0.8,0.8);
-// earth.rotation.x += 0.3;
-earth.castShadow = true;
-earth.receiveShadow = true;
+// var earthGeo = new THREE.SphereGeometry(1, 10, 10);
+// var earthMaterial = new THREE.MeshPhongMaterial({color: 0x33ff33});
+// var earth = new THREE.Mesh(earthGeo, earthMaterial);
+// sun.add(earth);
+// earth.position.set(5, 0, 0);
+// earth.scale.set(0.8, 0.8,0.8);
+// // earth.rotation.x += 0.3;
+// earth.castShadow = true;
+// earth.receiveShadow = true;
 
-var moonGeo = new THREE.SphereGeometry(1, 10, 10);
-var moonMaterial = new THREE.MeshPhongMaterial({color: 0x555555});
-var moon = new THREE.Mesh(moonGeo, moonMaterial);
-earth.add(moon);
-moon.position.set(5, 0, 0)
-moon.scale.set(0.6, 0.6, 0.6);
+// var moonGeo = new THREE.SphereGeometry(1, 10, 10);
+// var moonMaterial = new THREE.MeshPhongMaterial({color: 0x555555});
+// var moon = new THREE.Mesh(moonGeo, moonMaterial);
+// earth.add(moon);
+// moon.position.set(5, 0, 0)
+// moon.scale.set(0.6, 0.6, 0.6);
 
-moon.castShadow = true;
-moon.receiveShadow = true;
+// moon.castShadow = true;
+// moon.receiveShadow = true;
 
 // var ambientLight = new THREE.AmbientLight(0xFF6666);
 // scene.add(ambientLight);
@@ -190,14 +196,14 @@ moon.receiveShadow = true;
 // var hemisphereLight = new THREE.HemisphereLight(0xB1E1FF, 0xB97A20, 0.5);
 // scene.add(hemisphereLight);
 
-var directionalLight = new THREE.DirectionalLight(0xFFFFFF);
-directionalLight.position.set(5, 4, 5);
-directionalLight.target.position.set(5, 0, 0);
-scene.add(directionalLight);
-scene.add(directionalLight.target);
-directionalLight.castShadow = true;
-var directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight);
-scene.add(directionalLightHelper);
+// var directionalLight = new THREE.DirectionalLight(0xFFFFFF);
+// directionalLight.position.set(5, 4, 5);
+// directionalLight.target.position.set(5, 0, 0);
+// scene.add(directionalLight);
+// scene.add(directionalLight.target);
+// directionalLight.castShadow = true;
+// var directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight);
+// scene.add(directionalLightHelper);
 
 // var pointLight = new THREE.PointLight(0xFFFFF1, 150);
 // sun.add(pointLight);
@@ -253,12 +259,66 @@ scene.add(directionalLightHelper);
 // 	earth.add( object );
 // } );
 
+// dirt block
+const dirtBlockObject = new GrassBlock(1);
+dirtBlockObject.position.x = 0;
+scene.add(dirtBlockObject);
 
-var clock = new THREE.Clock();
+// pumpkin block
+const pumpkinBlockObject = new PumpkinBlock(1);
+pumpkinBlockObject.position.x = 2;
+scene.add(pumpkinBlockObject);
+
+// jackOLantern block
+const jackOLanternBlockObject = new JackOLanternBlock(1);  
+jackOLanternBlockObject.position.x = 4;
+scene.add(jackOLanternBlockObject);
+
+// oakLeaves block
+const oakLeavesBlockObject = new OakLeavesBlock(1);
+oakLeavesBlockObject.position.x = 6;
+scene.add(oakLeavesBlockObject);
+
+// oakLog block
+const oakLogBlockObject = new OakLogBlock(1);
+oakLogBlockObject.position.x = 8;
+scene.add(oakLogBlockObject);
+
+// oakTree
+const oakTreeObject = new OakTree(1, 2);
+oakTreeObject.position.x = 10;
+// scene.add(oakTreeObject); 
+
+
+// floor
+const floorGeometry = new THREE.BoxGeometry(40, 1, 20);
+const floorMaterial = new THREE.MeshPhongMaterial({ color: 0x291010});
+const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+floor.position.y = -1;
+floor.receiveShadow = true;
+scene.add(floor);
+
+
+// directional light
+const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+directionalLight.position.set(-15, 20, -15);
+directionalLight.target.position.set(0, 0, 0);
+directionalLight.castShadow = true;
+scene.add(directionalLight);
+scene.add(directionalLight.target);
+const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight);
+scene.add(directionalLightHelper);
+
+// ambient light
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+scene.add(ambientLight);
+
+
+// var clock = new THREE.Clock();
 function animate() {
     renderer.render(scene, camera);
-    sun.rotation.y += 0.01;
-    earth.rotation.y += 0.05;
+    // sun.rotation.y += 0.01;
+    // earth.rotation.y += 0.05;
 
 	// const delta = clock.getDelta();
 
