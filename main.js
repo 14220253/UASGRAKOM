@@ -259,6 +259,17 @@ raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1,
 // 	earth.add( object );
 // } );
 
+
+var arm = new THREE.BoxGeometry(1, 1, 5);
+var armMaterial = new THREE.MeshPhongMaterial({color: 0xDFA98F});
+armMaterial.depthTest = true;
+var arm = new THREE.Mesh(arm, armMaterial);
+camera.add(arm);
+arm.position.set(1.5, -1, -1)
+arm.rotateX(0.7);
+arm.rotateY(-0.1);
+arm.scale.set(0.4, 0.4, 0.4);
+
 // dirt block
 const dirtBlockObject = new GrassBlock(1);
 dirtBlockObject.position.x = 0;
@@ -379,14 +390,14 @@ function animate() {
         controls.moveRight( - velocity.x * delta / 2);
         controls.moveForward( - velocity.z * delta / 2);
         //headbob
-        if (moveForward || moveBackward || moveLeft || moveRight) {
-            headBobTimer += delta;
-            camera.position.y += Math.max(0, Math.sin(headBobTimer) / 10);
-        }
-        else {
-            headBobTimer = 0;
-            camera.position.y = 1.1;
-        }
+        // if (moveForward || moveBackward || moveLeft || moveRight) {
+        //     headBobTimer += delta;
+        //     camera.position.y += Math.max(0, Math.sin(headBobTimer) / 10);
+        // }
+        // else {
+        //     headBobTimer = 0;
+        //     camera.position.y = 1.1;
+        // }
 
         controls.getObject().position.y += ( velocity.y * delta ); // new behavior
 
