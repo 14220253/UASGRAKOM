@@ -3,12 +3,8 @@ import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
-import { GrassBlock } from './grassBlock.js';
-import { PumpkinBlock } from './pumpkinBlock.js';
-import { JackOLanternBlock } from './jackOLanternBlock.js';
-import { OakLeavesBlock } from './oakLeavesBlock.js';
-import { OakLogBlock } from './oakLogBlock.js';
-import { OakTree } from './oakTree.js';
+import { Block } from './block.js';
+import { StoneBrickBlockRoom } from './stoneBrickBlockRoom.js';
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -259,45 +255,17 @@ raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1,
 // 	earth.add( object );
 // } );
 
-// dirt block
-const dirtBlockObject = new GrassBlock(1);
-dirtBlockObject.position.x = 0;
-scene.add(dirtBlockObject);
-
-// pumpkin block
-const pumpkinBlockObject = new PumpkinBlock(1);
-pumpkinBlockObject.position.x = 2;
-scene.add(pumpkinBlockObject);
-
-// jackOLantern block
-const jackOLanternBlockObject = new JackOLanternBlock(1);  
-jackOLanternBlockObject.position.x = 4;
-scene.add(jackOLanternBlockObject);
-
-// oakLeaves block
-const oakLeavesBlockObject = new OakLeavesBlock(1);
-oakLeavesBlockObject.position.x = 6;
-scene.add(oakLeavesBlockObject);
-
-// oakLog block
-const oakLogBlockObject = new OakLogBlock(1);
-oakLogBlockObject.position.x = 8;
-scene.add(oakLogBlockObject);
-
-// // oakTree
-// const oakTreeObject = new OakTree(1, 2);
-// oakTreeObject.position.x = 10;
-// // scene.add(oakTreeObject); 
-
-
 // floor
 const floorGeometry = new THREE.BoxGeometry(40, 1, 20);
 const floorMaterial = new THREE.MeshPhongMaterial({ color: 0x291010});
 const floor = new THREE.Mesh(floorGeometry, floorMaterial);
-floor.position.y = -1;
 floor.receiveShadow = true;
 scene.add(floor);
 
+// room awal
+const block = new Block(0.5, '../resources/mossyStoneBrickBlock/mossyStoneBrickBlock.webp');
+block.position.y = 0.75;
+floor.add(block);
 
 // directional light
 const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
