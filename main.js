@@ -321,7 +321,7 @@ function animate() {
         //headbob
         if (moveForward || moveBackward || moveLeft || moveRight) {
             headBobTimer += delta;
-            camera.position.y += Math.sin(headBobTimer) / 10;
+            camera.position.y += Math.max(0, Math.sin(headBobTimer) / 10);
         }
         else {
             headBobTimer = 0;
