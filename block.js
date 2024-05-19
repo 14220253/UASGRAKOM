@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 
 export class Block {
-    constructor(blockSize, sideTexture, faceTexture = null, topTexture = null, botTexture = null) {
-        this.geometry = this.createGeometry(blockSize, blockSize, blockSize);
+    constructor(xSize, ySize , zSize , sideTexture, faceTexture = null, topTexture = null, botTexture = null) {
+        this.geometry = this.createGeometry(xSize, ySize, zSize);
 
         if (faceTexture && topTexture && botTexture) {
             this.material = this.createMaterial4Texture(sideTexture, faceTexture, topTexture, botTexture);
@@ -10,8 +10,7 @@ export class Block {
             this.material = this.createMaterial3Texture(sideTexture, topTexture, botTexture);
         } else if (faceTexture){
             this.material = this.createMaterial2Texture(sideTexture, faceTexture);
-        }
-        else{
+        } else {
             this.material = this.createMaterial1Texture(sideTexture);
         }
 
@@ -22,56 +21,86 @@ export class Block {
     }
 
     createGeometry(xSize, ySize, zSize) {
-        const Geometry = new THREE.BoxGeometry(xSize, ySize, zSize);
-        return Geometry;
+        const geometry = new THREE.BoxGeometry(xSize, ySize, zSize);
+        return geometry;
+    }
+
+    applyTextureRepeat(texture) {
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set(20, 20); // Set repeat scale to make textures smaller
     }
 
     createMaterial1Texture(pathSide) { // 1 texture material
-        const MaterialArray = [
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathSide) }), // kanan
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathSide) }), // kiri
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathSide) }), // atas
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathSide) }), // bawah
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathSide) }), // depan
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathSide) }) // belakang
-        ];
-        return MaterialArray;
+        const texture = new THREE.TextureLoader().load(pathSide);
+        this.applyTextureRepeat(texture);
+
+        const material = new THREE.MeshPhongMaterial({ map: texture });
+
+        return [material, material, material, material, material, material];
     }
 
     createMaterial2Texture(pathSide, pathFace) { // 2 texture material
-        const MaterialArray = [
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathSide) }), // kanan
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathSide) }), // kiri
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathSide) }), // atas
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathSide) }), // bawah
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathFace) }), // depan
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathSide) }) // belakang
+        const sideTexture = new THREE.TextureLoader().load(pathSide);
+        this.applyTextureRepeat(sideTexture);
+
+        const faceTexture = new THREE.TextureLoader().load(pathFace);
+        this.applyTextureRepeat(faceTexture);
+
+        const materialArray = [
+            new THREE.MeshPhongMaterial({ map: sideTexture }), // kanan
+            new THREE.MeshPhongMaterial({ map: sideTexture }), // kiri
+            new THREE.MeshPhongMaterial({ map: sideTexture }), // atas
+            new THREE.MeshPhongMaterial({ map: sideTexture }), // bawah
+            new THREE.MeshPhongMaterial({ map: faceTexture }), // depan
+            new THREE.MeshPhongMaterial({ map: sideTexture })  // belakang
         ];
-        return MaterialArray;
+        return materialArray;
     }
 
     createMaterial3Texture(pathSide, pathTop, pathBot) { // 3 texture material
-        const MaterialArray = [
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathSide) }), // kanan
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathSide) }), // kiri
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathTop) }), // atas
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathBot) }), // bawah
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathSide) }), // depan
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathSide) }) // belakang
+        const sideTexture = new THREE.TextureLoader().load(pathSide);
+        this.applyTextureRepeat(sideTexture);
+
+        const topTexture = new THREE.TextureLoader().load(pathTop);
+        this.applyTextureRepeat(topTexture);
+
+        const botTexture = new THREE.TextureLoader().load(pathBot);
+        this.applyTextureRepeat(botTexture);
+
+        const materialArray = [
+            new THREE.MeshPhongMaterial({ map: sideTexture }), // kanan
+            new THREE.MeshPhongMaterial({ map: sideTexture }), // kiri
+            new THREE.MeshPhongMaterial({ map: topTexture }),  // atas
+            new THREE.MeshPhongMaterial({ map: botTexture }),  // bawah
+            new THREE.MeshPhongMaterial({ map: sideTexture }), // depan
+            new THREE.MeshPhongMaterial({ map: sideTexture })  // belakang
         ];
-        return MaterialArray;
+        return materialArray;
     }
 
     createMaterial4Texture(pathSide, pathFace, pathTop, pathBot) { // 4 texture material
-        const MaterialArray = [
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathSide) }), // kanan
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathSide) }), // kiri
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathTop) }), // atas
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathBot) }), // bawah
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathFace) }), // depan
-            new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load(pathSide) }) // belakang
+        const sideTexture = new THREE.TextureLoader().load(pathSide);
+        this.applyTextureRepeat(sideTexture);
+
+        const faceTexture = new THREE.TextureLoader().load(pathFace);
+        this.applyTextureRepeat(faceTexture);
+
+        const topTexture = new THREE.TextureLoader().load(pathTop);
+        this.applyTextureRepeat(topTexture);
+
+        const botTexture = new THREE.TextureLoader().load(pathBot);
+        this.applyTextureRepeat(botTexture);
+
+        const materialArray = [
+            new THREE.MeshPhongMaterial({ map: sideTexture }), // kanan
+            new THREE.MeshPhongMaterial({ map: sideTexture }), // kiri
+            new THREE.MeshPhongMaterial({ map: topTexture }),  // atas
+            new THREE.MeshPhongMaterial({ map: botTexture }),  // bawah
+            new THREE.MeshPhongMaterial({ map: faceTexture }), // depan
+            new THREE.MeshPhongMaterial({ map: sideTexture })  // belakang
         ];
-        return MaterialArray;
+        return materialArray;
     }
 
     createObject(geometry, material) {

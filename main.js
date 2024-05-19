@@ -4,7 +4,6 @@ import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 import { Block } from './block.js';
-import { StoneBrickBlockRoom } from './stoneBrickBlockRoom.js';
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -262,28 +261,148 @@ const floor = new THREE.Mesh(floorGeometry, floorMaterial);
 floor.receiveShadow = true;
 scene.add(floor);
 
-// room awal
-const block = new Block(0.5, '../resources/mossyStoneBrickBlock/mossyStoneBrickBlock.webp');
-block.position.y = 0.75;
-floor.add(block);
+// ukuran block awal 0.3
+
+const block1 = new Block(5, 0.3, 2.5, '../resources/mossyStoneBrickBlock/mossyStoneBrickBlock.webp');
+block1.rotation.x = Math.PI/2;
+block1.position.x = -3.3;
+block1.position.y = 1;
+block1.position.z = -1;
+floor.add(block1);
+
+const block2 = new Block(5, 0.3, 2.5, '../resources/mossyStoneBrickBlock/mossyStoneBrickBlock.webp');
+block2.rotation.x = Math.PI/2;
+block2.position.x = -3.3;
+block2.position.y = 1;
+block2.position.z = 1.35;
+floor.add(block2);
+
+const block3 = new Block(2.5, 0.3, 2.5, '../resources/mossyStoneBrickBlock/mossyStoneBrickBlock.webp');
+block3.rotation.x = Math.PI/2;
+block3.rotation.z = Math.PI/2;
+block3.position.x = -5.65;
+block3.position.y = 1;
+block3.position.z = 0.2;
+floor.add(block3);
+
+const block4 = new Block(5, 5, 0.3, '../resources/mossyStoneBrickBlock/mossyStoneBrickBlock.webp'); // atap
+block4.rotation.x = Math.PI/2;
+block4.position.x = -3.3;
+block4.position.y = 2.4;
+block4.position.z = -1;
+floor.add(block4);
+
+const block4_2 = new Block(5, 5, 0.3, '../resources/mossyStoneBrickBlock/mossyStoneBrickBlock.webp'); // atap
+block4_2.rotation.x = Math.PI/2;
+block4_2.position.x = -3.3;
+block4_2.position.y = 2.4;
+block4_2.position.z = -6;
+floor.add(block4_2);
+
+const block4_3 = new Block(5, 5, 0.3, '../resources/mossyStoneBrickBlock/mossyStoneBrickBlock.webp'); // atap
+block4_3.rotation.x = Math.PI/2;
+block4_3.position.x = 1.7;
+block4_3.position.y = 2.4;
+block4_3.position.z = -1;
+floor.add(block4_3);
+
+const block4_4 = new Block(5, 5, 0.3, '../resources/mossyStoneBrickBlock/mossyStoneBrickBlock.webp'); // atap
+block4_4.rotation.x = Math.PI/2;
+block4_4.position.x = 1.7;
+block4_4.position.y = 2.4;
+block4_4.position.z = -6;
+floor.add(block4_4);
+
+const onRedstoneLampBlock = new Block(0.3, 0.3, 0.3, '../resources/onRedstoneLampBlock/onRedstoneLampBlock.webp');
+onRedstoneLampBlock.position.y = 1.65;
+onRedstoneLampBlock.position.z = 0.3;
+onRedstoneLampBlock.position.x = 0;
+const onRedstoneLampBlockPointLight = new THREE.PointLight(0xffffff, 1, 3, 2);
+onRedstoneLampBlockPointLight.position.z = 0;
+function onRedstoneLampBlockPointLightFlickerLight() {
+    onRedstoneLampBlockPointLight.intensity = 1 + Math.random() * 5;  // Random intensity between 1 and 1.5
+}
+onRedstoneLampBlock.add(onRedstoneLampBlockPointLight);
+const onRedstoneLampBlockPointLightHelper = new THREE.PointLightHelper(onRedstoneLampBlockPointLight, 1);
+scene.add(onRedstoneLampBlockPointLightHelper);
+block4_4.add(onRedstoneLampBlock);
+
+const block5 = new Block(5, 0.3, 2.5, '../resources/mossyStoneBrickBlock/mossyStoneBrickBlock.webp');
+block5.rotation.x = Math.PI/2;
+block5.rotation.z = Math.PI/2;
+block5.position.x = -0.94;
+block5.position.y = 1;
+block5.position.z = -2.3;
+floor.add(block5);
+
+// --------------------------------------------//------------------------------------------------------
+
+const block6 = new Block(4, 0.3, 2.5, '../resources/mossyStoneBrickBlock/mossyStoneBrickBlock.webp');
+block6.rotation.x = Math.PI/2;
+block6.rotation.z = Math.PI/2;
+block6.position.x = 0.3;
+block6.position.y = 1;
+block6.position.z = -1.8;
+floor.add(block6);
+
+const block7 = new Block(4, 0.3, 2.5, '../resources/mossyStoneBrickBlock/mossyStoneBrickBlock.webp');
+block7.rotation.x = Math.PI/2;
+block7.position.x = 1;
+block7.position.y = 1;
+block7.position.z = -4.95;
+floor.add(block7);
+
+
+
+
+// torch 
+
+new MTLLoader()
+					.setPath( 'resources/torch/' )
+					.load( 'Torch.mtl', function ( materials ) {
+
+						materials.preload();
+
+						new OBJLoader()
+							.setMaterials( materials )
+							.setPath( 'resources/torch/' )
+							.load( 'Torch.obj', function ( object ) {
+                                object.position.x = -2.16;
+                                object.position.y = 0.4;
+                                object.position.z = -0.4;
+                                object.scale.set(0.1, 0.1, 0.1);
+                                object.rotation.x = -Math.PI/2;
+                                object.rotation.z = 150;
+                                object.receiveShadow = true;
+                                object.castShadow = true;
+                                const torchPointLight = new THREE.PointLight(0xfca519, 1, 0, 2);
+                                object.add(torchPointLight);
+                                torchPointLight.position.y = 2;
+                                torchPointLight.position.x = 0.7;
+                                // const torchPointLightHelper = new THREE.PointLightHelper(torchPointLight, 1, 0xffffff);
+                                // scene.add(torchPointLightHelper);
+								block1.add( object );
+							});
+					} );
 
 // directional light
-const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
-directionalLight.position.set(-15, 20, -15);
-directionalLight.target.position.set(0, 0, 0);
-directionalLight.castShadow = true;
-scene.add(directionalLight);
-scene.add(directionalLight.target);
-const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight);
-scene.add(directionalLightHelper);
+// const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+// directionalLight.position.set(-15, 20, -15);
+// directionalLight.target.position.set(0, 0, 0);
+// directionalLight.castShadow = true;
+// scene.add(directionalLight);
+// scene.add(directionalLight.target);
+// const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight);
+// scene.add(directionalLightHelper);
 
 // ambient light
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-scene.add(ambientLight);
+// const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+// scene.add(ambientLight);
 
 
 // var clock = new THREE.Clock();
 function animate() {
+    onRedstoneLampBlockPointLightFlickerLight();
     renderer.render(scene, camera);
     // sun.rotation.y += 0.01;
     // earth.rotation.y += 0.05;
