@@ -4,6 +4,7 @@ import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 import { Block } from './block.js';
+import { LightGreyStainedGlassBlock } from './block.js';
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -318,11 +319,12 @@ onRedstoneLampBlock.position.y = 1.65;
 onRedstoneLampBlock.position.z = 0.3;
 onRedstoneLampBlock.position.x = 0;
 const onRedstoneLampBlockPointLight = new THREE.PointLight(0xffffff, 1, 3, 2);
+onRedstoneLampBlockPointLight.castShadow = true;
 onRedstoneLampBlockPointLight.position.z = 0;
 function onRedstoneLampBlockPointLightFlickerLight() {
-    onRedstoneLampBlockPointLight.intensity = 1 + Math.random() * 5;  // Random intensity between 1 and 1.5
+    onRedstoneLampBlockPointLight.intensity = 1 + Math.random() * 5;  // Random intensity between 1 and 5
 }
-onRedstoneLampBlock.add(onRedstoneLampBlockPointLight);
+onRedstoneLampBlock.add(onRedstoneLampBlockPointLight)
 const onRedstoneLampBlockPointLightHelper = new THREE.PointLightHelper(onRedstoneLampBlockPointLight, 1);
 scene.add(onRedstoneLampBlockPointLightHelper);
 block4_4.add(onRedstoneLampBlock);
@@ -336,6 +338,22 @@ block5.position.z = -2.3;
 floor.add(block5);
 
 // --------------------------------------------//------------------------------------------------------
+
+const block5_2 = new Block(5, 0.3, 2, '../resources/mossyStoneBrickBlock/mossyStoneBrickBlock.webp');
+block5_2.rotation.x = Math.PI/2;
+block5_2.rotation.z = Math.PI/2;
+block5_2.position.x = -0.94;
+block5_2.position.y = 1;
+block5_2.position.z = 4;
+floor.add(block5_2);
+
+const block5_3 = new LightGreyStainedGlassBlock(5, 0.3, 0.3, '../resources/lightGreyStainedGlassBlock/lightGreyStainedGlassBlock.webp');
+block5_3.rotation.x = Math.PI/2;
+block5_3.rotation.z = Math.PI/2;
+block5_3.position.x = -0.94;
+block5_3.position.y = 2.12;
+block5_3.position.z = 4;
+floor.add(block5_3);
 
 const block6 = new Block(4, 0.3, 2.5, '../resources/mossyStoneBrickBlock/mossyStoneBrickBlock.webp');
 block6.rotation.x = Math.PI/2;
@@ -386,18 +404,45 @@ new MTLLoader()
 					} );
 
 // directional light
-// const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
-// directionalLight.position.set(-15, 20, -15);
-// directionalLight.target.position.set(0, 0, 0);
-// directionalLight.castShadow = true;
-// scene.add(directionalLight);
-// scene.add(directionalLight.target);
-// const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight);
-// scene.add(directionalLightHelper);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+directionalLight.position.set(-15, 20, 20);
+directionalLight.target.position.set(0, 0, 0);
+directionalLight.castShadow = true;
+scene.add(directionalLight);
+scene.add(directionalLight.target);
+const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight);
+scene.add(directionalLightHelper);
+
+// directional light thunder
+function simulateLightning() {
+    const minIntensity = 0;
+    const maxIntensity = 4;
+    const minDuration = 50; // in milliseconds
+    const maxDuration = 200; // in milliseconds
+    const delay = Math.random() * (2000 - 500) + 500; // Time between flashes (500ms to 2000ms)
+
+    // Random intensity and duration for the lightning flash
+    const flashIntensity = Math.random() * (maxIntensity - minIntensity) + minIntensity;
+    const flashDuration = Math.random() * (maxDuration - minDuration) + minDuration;
+
+    // Set light intensity to flash intensity
+    directionalLight.intensity = flashIntensity;
+
+    // Reset light intensity after flash duration
+    setTimeout(() => {
+        directionalLight.intensity = 2; // Reset to original intensity
+    }, flashDuration);
+
+    // Schedule next flash
+    setTimeout(simulateLightning, delay);
+}
+
+// Start the lightning effect
+simulateLightning();
 
 // ambient light
-// const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-// scene.add(ambientLight);
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+scene.add(ambientLight);
 
 
 // var clock = new THREE.Clock();
