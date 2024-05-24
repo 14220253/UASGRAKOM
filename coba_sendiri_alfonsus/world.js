@@ -18,12 +18,12 @@ export class World extends THREE.Group {
         seed: 0,
         terrain: {
             scale: 30,
-            magnitude: 0.5,
-            offset: 0.2
+            magnitude: 0.05,
+            offset: 0.5
         }
     };
 
-    constructor(size = {width: 64, height: 32}) {
+    constructor(size = {width: 128, height: 128}) {
         super();
         this.size = size;
     }
@@ -32,7 +32,31 @@ export class World extends THREE.Group {
         const rng = new RNG(this.params.seed);
 
         this.InitializeTerrain();
-        this.generateResources(rng);
+        for (let x = 0; x <= 20; x++) {
+            for (let z = 0; z <= 0; z++) {
+                for (let y = 0; y <= 10; y++) {
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 0; x <= 20; x++) {
+            for (let z = 1; z <= 9; z++) {
+                for (let y = 0; y <= 0; y++) {
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 0; x <= 20; x++) {
+            for (let z = 10; z <= 10; z++) {
+                for (let y = 0; y <= 10; y++) {
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        // this.generateResources(rng);
         this.generateTerrain(rng);
         this.generateMeshes();
     }
@@ -101,7 +125,7 @@ export class World extends THREE.Group {
 
                 //Fill in all blocks at or below the terrain height
                 for (let y = 0; y <= this.size.height; y++) {
-                    if (y < height && this.getBlock(x,y,z).id === blocks.empty.id) {
+                    if (y > 55 && y < height && this.getBlock(x,y,z).id === blocks.empty.id) {
                         this.setBlockId(x,y,z, blocks.dirt.id);
                     } else if (y === height) {
                         this.setBlockId(x,y,z,blocks.grass.id);
