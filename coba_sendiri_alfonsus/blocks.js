@@ -17,6 +17,7 @@ const textures = {
     stone: loadTexture('textures/stone.png'),
     coalOre: loadTexture('textures/coal_ore.png'),
     ironOre: loadTexture('textures/iron_ore.png'),
+    sand: loadTexture('textures/sand.png')
 }
 
 export const blocks = {
@@ -66,6 +67,11 @@ export const blocks = {
         scale: { x: 60, y: 60, z: 60},
         scarcity: 0.9,
         material: new THREE.MeshPhongMaterial({map: textures.ironOre})
+    },
+    sand: {
+        id: 6,
+        name: 'sand',
+        material: new THREE.MeshPhongMaterial({map: textures.sand})
     }
 }
 
