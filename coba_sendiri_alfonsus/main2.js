@@ -13,17 +13,17 @@ document.body.append(stats.dom);
 const renderer = new THREE.WebGLRenderer();
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setClearColor(0x80a0e0);
+renderer.setClearColor(0x000000); //0x80a0e0
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.body.appendChild(renderer.domElement);
 
 //Camera
 const orbitCamera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight);
-orbitCamera.position.set(-32,16,-32);
+orbitCamera.position.set(64,100,64);
 
 const controls = new OrbitControls(orbitCamera, renderer.domElement);
-controls.target.set(16, 0, 16);
+controls.target.set(50, 64, 50);
 controls.update();
 
 //scene
@@ -37,25 +37,30 @@ const player = new Player(scene);
 const physics = new Physics(scene);
 
 function setupLights() {
-    const sun = new THREE.DirectionalLight();
-    sun.position.set(50,50,50);
-    sun.castShadow = true;
-    sun.shadow.camera.left = -50;
-    sun.shadow.camera.right = 50;
-    sun.shadow.camera.bottom = -50;
-    sun.shadow.camera.top = 50;
-    sun.shadow.camera.near = 0.1;
-    sun.shadow.camera.far = 100;
-    sun.shadow.bias = -0.0007;
-    sun.shadow.mapSize = new THREE.Vector2(512,512);
-    scene.add(sun);
+    const moon = new THREE.DirectionalLight(0x6666dd, 0.7);
+    moon.position.set(125,125,125);
+    moon.castShadow = true;
+    moon.shadow.camera.left = -100;
+    moon.shadow.camera.right = 100;
+    moon.shadow.camera.bottom = -100;
+    moon.shadow.camera.top = 100;
+    moon.shadow.camera.near = 0.1;
+    moon.shadow.camera.far = 200;
+    moon.shadow.bias = -0.0007;
+    moon.shadow.mapSize = new THREE.Vector2(512,512);
+    scene.add(moon);
 
-    const shadowHelper = new THREE.CameraHelper(sun.shadow.camera);
+    const shadowHelper = new THREE.CameraHelper(moon.shadow.camera);
+    shadowHelper.visible = false;
     scene.add(shadowHelper)
+    scene.shadowHelper = shadowHelper;
 
     const ambient = new THREE.AmbientLight();
-    ambient.intensity = 0.1;
+    ambient.intensity = 0.02;
     scene.add(ambient);
+
+    const hemiLight = new THREE.HemisphereLight(0x222222, 0x000000, 0.4); 
+    scene.add(hemiLight);
 }
 
 //render
@@ -81,6 +86,6 @@ window.addEventListener("resize", () =>{
 });
 
 setupLights();
-createUI(world, player);
+createUI(world, player, scene);
 
 animate();

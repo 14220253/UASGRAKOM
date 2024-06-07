@@ -17,7 +17,10 @@ const textures = {
     stone: loadTexture('textures/stone.png'),
     coalOre: loadTexture('textures/coal_ore.png'),
     ironOre: loadTexture('textures/iron_ore.png'),
-    sand: loadTexture('textures/sand.png')
+    sand: loadTexture('textures/sand.png'),
+    leaves: loadTexture('textures/leaves_oak_opaque.png'),
+    treeTop: loadTexture('textures/log_oak_top.png'),
+    treeSide: loadTexture('textures/log_oak.png')
 }
 
 export const blocks = {
@@ -72,6 +75,31 @@ export const blocks = {
         id: 6,
         name: 'sand',
         material: new THREE.MeshPhongMaterial({map: textures.sand})
+    },
+    tree: {
+        id: 7,
+        name: 'tree',
+        material: [
+            new THREE.MeshPhongMaterial({map: textures.treeSide}), //right
+            new THREE.MeshPhongMaterial({map: textures.treeSide}), //left
+            new THREE.MeshPhongMaterial({map: textures.treeTop}), //top
+            new THREE.MeshPhongMaterial({map: textures.treeTop}), //botton
+            new THREE.MeshPhongMaterial({map: textures.treeSide}), //front
+            new THREE.MeshPhongMaterial({map: textures.treeSide}) //back
+        ]
+    },
+    leaves: {
+        id: 8,
+        name: 'leaves',
+        material: new THREE.MeshPhongMaterial({
+            map: textures.leaves,
+            color: 0x77ab2f,
+        })
+    },
+    cloud: {
+        id: 9,
+        name: 'cloud',
+        material: new THREE.MeshBasicMaterial({color: 0x101010})
     }
 }
 
