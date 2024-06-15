@@ -5,7 +5,7 @@ export class Player {
     radius = 0.5;
     height = 1.75;
     jumpSpeed = 9;
-    maxSpeed = 5;
+    maxSpeed = 20;
     onGround = false;
     input = new THREE.Vector3();
     velocity = new THREE.Vector3();
@@ -16,7 +16,7 @@ export class Player {
     cameraHelper = new THREE.CameraHelper(this.camera);
 
     constructor(scene) {
-        this.camera.position.set(32, 16, 32);
+        this.camera.position.set(80, 16, 80);
         scene.add(this.camera);
         scene.add(this.cameraHelper);
 
@@ -99,7 +99,7 @@ export class Player {
                 this.input.x = this.maxSpeed;
                 break; 
             case 'KeyR':
-                this.position.set(32,64,32);
+                this.position.set(6,3,5);
                 this.velocity.set(0,0,0);
                 break; 
             case 'Space':

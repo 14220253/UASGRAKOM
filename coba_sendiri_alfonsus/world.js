@@ -23,7 +23,7 @@ export class World extends THREE.Group {
         }
     };
 
-    constructor(size = {width: 128, height: 128}) {
+    constructor(size = {width: 128, height: 128}) { // 128 128
         super();
         this.size = size;
     }
@@ -31,33 +31,406 @@ export class World extends THREE.Group {
     generate() {
         const rng = new RNG(this.params.seed);
 
+        // tinggi(y) wallnya dibuat 10, kalo floor tingginya(y) dibuat 0
         this.InitializeTerrain();
-        for (let x = 0; x <= 20; x++) {
+        for (let x = 5; x <= 55; x++) {
             for (let z = 0; z <= 0; z++) {
-                for (let y = 0; y <= 10; y++) {
+                for (let y = 0; y <= 5; y++) { // 1
                     this.setBlockId(x,y,z, 3);
                 }
             }
         }
 
-        for (let x = 0; x <= 20; x++) {
-            for (let z = 1; z <= 9; z++) {
-                for (let y = 0; y <= 0; y++) {
+        for (let x = 5; x <= 5; x++) {
+            for (let z = 0; z <= 40; z++) {
+                for (let y = 0; y <= 5; y++) { // 2
                     this.setBlockId(x,y,z, 3);
                 }
             }
         }
 
-        for (let x = 0; x <= 20; x++) {
+        for (let x = 30; x <= 30; x++) {
+            for (let z = 0; z <= 10; z++) {
+                for (let y = 0; y <= 5; y++) { // 3
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+
+        for (let x = 5; x <= 18; x++) {
             for (let z = 10; z <= 10; z++) {
-                for (let y = 0; y <= 10; y++) {
+                for (let y = 0; y <= 5; y++) { // 4
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 21; x <= 40; x++) {
+            for (let z = 10; z <= 10; z++) {
+                for (let y = 0; y <= 5; y++) { // 5
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 43; x <= 55; x++) {
+            for (let z = 10; z <= 10; z++) {
+                for (let y = 0; y <= 5; y++) { // 6
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 55; x <= 55; x++) {
+            for (let z = 0; z <= 4; z++) {
+                for (let y = 0; y <= 5; y++) { // 7
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 55; x <= 55; x++) {
+            for (let z = 7; z <= 10; z++) {
+                for (let y = 0; y <= 5; y++) { // 8
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 55; x <= 90; x++) {
+            for (let z = 2; z <= 2; z++) {
+                for (let y = 0; y <= 5; y++) { // 9
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 55; x <= 77; x++) {
+            for (let z = 9; z <= 9; z++) {
+                for (let y = 0; y <= 5; y++) { // 10
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 80; x <= 82; x++) {
+            for (let z = 9; z <= 9; z++) {
+                for (let y = 0; y <= 5; y++) { // 11
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 82; x <= 82; x++) {
+            for (let z = 10; z <= 40; z++) {
+                for (let y = 0; y <= 5; y++) { // 12
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 73; x <= 73; x++) {
+            for (let z = 10; z <= 28; z++) {
+                for (let y = 0; y <= 5; y++) { // 13
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 74; x <= 81; x++) {
+            for (let z = 25; z <= 25; z++) {
+                for (let y = 0; y <= 5; y++) { // 14
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 74; x <= 81; x++) {
+            for (let z = 40; z <= 40; z++) {
+                for (let y = 0; y <= 5; y++) { // 15
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 73; x <= 73; x++) {
+            for (let z = 37; z <= 55; z++) {
+                for (let y = 0; y <= 5; y++) { // 16
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 72; x <= 72; x++) {
+            for (let z = 55; z <= 55; z++) {
+                for (let y = 0; y <= 5; y++) { // 16#1/2
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 71; x <= 71; x++) {
+            for (let z = 55; z <= 60; z++) {
+                for (let y = 0; y <= 5; y++) { // 16#2
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 73; x <= 79; x++) {
+            for (let z = 50; z <= 50; z++) {
+                for (let y = 0; y <= 5; y++) { // 17
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 80; x <= 80; x++) {
+            for (let z = 45; z <= 80; z++) {
+                for (let y = 0; y <= 5; y++) { // 18
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 90; x <= 90; x++) {
+            for (let z = 2; z <= 55; z++) {
+                for (let y = 0; y <= 5; y++) { // 19
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 80; x <= 90; x++) {
+            for (let z = 55; z <= 55; z++) {
+                for (let y = 0; y <= 5; y++) { // 20
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 71; x <= 76; x++) {
+            for (let z = 60; z <= 60; z++) {
+                for (let y = 0; y <= 5; y++) { // 21
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 2; x <= 80; x++) {
+            for (let z = 81; z <= 81; z++) {
+                for (let y = 0; y <= 5; y++) { // 22
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 27; x <= 27; x++) {
+            for (let z = 68; z <= 80; z++) {
+                for (let y = 0; y <= 5; y++) { // 23
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 27; x <= 37; x++) {
+            for (let z = 68; z <= 68; z++) {
+                for (let y = 0; y <= 5; y++) { // 24
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 37; x <= 37; x++) {
+            for (let z = 53; z <= 68; z++) {
+                for (let y = 0; y <= 5; y++) { // 25
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 38; x <= 50; x++) {
+            for (let z = 55; z <= 55; z++) {
+                for (let y = 0; y <= 5; y++) { // 26
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 53; x <= 70; x++) {
+            for (let z = 55; z <= 55; z++) {
+                for (let y = 0; y <= 5; y++) { // 27
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+
+        for (let x = 37; x <= 37; x++) {
+            for (let z = 21; z <= 50; z++) {
+                for (let y = 0; y <= 5; y++) { // 32
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 37; x <= 55; x++) {
+            for (let z = 21; z <= 21; z++) {
+                for (let y = 0; y <= 5; y++) { // 33
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 58; x <= 73; x++) {
+            for (let z = 21; z <= 21; z++) {
+                for (let y = 0; y <= 5; y++) { // 34
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 5; x <= 37; x++) {
+            for (let z = 21; z <= 80; z++) {
+                for (let y = 0; y <= 5; y++) { // kotak bawah kiri
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        
+
+        for (let x = 10; x <= 18; x++) {
+            for (let z = 47; z <= 73; z++) {
+                for (let y = 0; y <= 5; y++) { // kotak bawah kanan
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 17; x <= 21; x++) {
+            for (let z = 55; z <= 68; z++) {
+                for (let y = 0; y <= 5; y++) { // kotak bawah kanan#2
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 45; x <= 65; x++) {
+            for (let z = 30; z <= 30; z++) {
+                for (let y = 0; y <= 5; y++) { // ruang utama/tengah
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 45; x <= 65; x++) {
+            for (let z = 46; z <= 46; z++) {
+                for (let y = 0; y <= 5; y++) { // ruang utama/tengah#2
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 65; x <= 65; x++) {
+            for (let z = 31; z <= 46; z++) {
+                for (let y = 0; y <= 5; y++) { // ruang utama/tengah#3
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 45; x <= 45; x++) {
+            for (let z = 31; z <= 36; z++) {
+                for (let y = 0; y <= 5; y++) { // ruang utama/tengah#4
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 45; x <= 45; x++) {
+            for (let z = 40; z <= 46; z++) {
+                for (let y = 0; y <= 5; y++) { // ruang utama/tengah#5
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 76; x <= 76; x++) {
+            for (let z = 66; z <= 75; z++) {
+                for (let y = 0; y <= 5; y++) { // ruang atas kanan
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 69; x <= 69; x++) {
+            for (let z = 66; z <= 75; z++) {
+                for (let y = 0; y <= 5; y++) { // ruang atas kanan#2
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 70; x <= 75; x++) {
+            for (let z = 66; z <= 66; z++) {
+                for (let y = 0; y <= 5; y++) { // ruang atas kanan#3
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 70; x <= 71; x++) {
+            for (let z = 75; z <= 75; z++) {
+                for (let y = 0; y <= 5; y++) { // ruang atas kanan#4
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 74; x <= 75; x++) {
+            for (let z = 75; z <= 75; z++) {
+                for (let y = 0; y <= 5; y++) { // ruang atas kanan#5
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 44; x <= 64; x++) {
+            for (let z = 60; z <= 68; z++) {
+                for (let y = 0; y <= 5; y++) { // ruang bawahnya atas kanan
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 28; x <= 28; x++) {
+            for (let z = 5; z <= 5; z++) {
+                for (let y = 1; y <= 2; y++) { // bawahnya oldLamp
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 0; x <= 90; x++) {
+            for (let z = 0; z <= 90; z++) {
+                for (let y = 0; y <= 0; y++) { // floor
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 0; x <= 90; x++) {
+            for (let z = 0; z <= 90; z++) {
+                for (let y = 6; y <= 6; y++) { // ceiling
                     this.setBlockId(x,y,z, 3);
                 }
             }
         }
 
         // this.generateResources(rng);
-        this.generateTerrain(rng);
+        // this.generateTerrain(rng);
         this.generateMeshes();
     }
 
