@@ -31,6 +31,22 @@ export class Player {
     }
 
     /**
+     * Checks if the player is close to a given object
+     * @param {THREE.Object3D} object 
+     * @param {number} threshold 
+     * @returns {boolean}
+     */
+    isCloseTo(object, threshold = 20) {
+        const distance = this.position.distanceTo(object.position);
+        return distance < threshold;
+    }
+
+    distance(object) {
+        const distance = this.position.distanceTo(object.position);
+        return distance;
+    }
+
+    /**
      * Returns the velocity of the player in world coordinates
      * @returns {THREE.Vector3}
      */

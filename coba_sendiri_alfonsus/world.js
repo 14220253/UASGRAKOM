@@ -59,7 +59,7 @@ export class World extends THREE.Group {
 
 
         for (let x = 5; x <= 18; x++) {
-            for (let z = 10; z <= 10; z++) {
+            for (let z = 10; z <= 50; z++) {
                 for (let y = 0; y <= 5; y++) { // 4
                     this.setBlockId(x,y,z, 3);
                 }
@@ -146,8 +146,16 @@ export class World extends THREE.Group {
             }
         }
 
-        for (let x = 74; x <= 81; x++) {
-            for (let z = 40; z <= 40; z++) {
+        for (let x = 73; x <= 81; x++) {
+            for (let z = 25; z <= 40; z++) {
+                for (let y = 0; y <= 5; y++) { // 15
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 73; x <= 79; x++) {
+            for (let z = 45; z <= 60; z++) {
                 for (let y = 0; y <= 5; y++) { // 15
                     this.setBlockId(x,y,z, 3);
                 }
@@ -179,7 +187,7 @@ export class World extends THREE.Group {
         }
 
         for (let x = 73; x <= 79; x++) {
-            for (let z = 50; z <= 50; z++) {
+            for (let z = 50; z <= 60; z++) {
                 for (let y = 0; y <= 5; y++) { // 17
                     this.setBlockId(x,y,z, 3);
                 }
@@ -397,8 +405,8 @@ export class World extends THREE.Group {
             }
         }
 
-        for (let x = 44; x <= 64; x++) {
-            for (let z = 60; z <= 68; z++) {
+        for (let x = 30; x <= 64; x++) {
+            for (let z = 60; z <= 80; z++) {
                 for (let y = 0; y <= 5; y++) { // ruang bawahnya atas kanan
                     this.setBlockId(x,y,z, 3);
                 }
