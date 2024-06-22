@@ -136,14 +136,14 @@ function generateMTL(pathFolderObject, MTLName, OBJName, onLoad) {
 }
 //object
 
-//barrel1-5
-for(let i = 8; i < 13; i+= 1.5){
-    generateMTL("objectResources/barrel/", "Barrel.mtl", "Barrel.obj", function (barrel) {
-        barrel.scale.setScalar(0.35);
-        barrel.position.set(i, 0, 2);
-        scene.add(barrel);
-    });
-}
+// //barrel1-5
+// for(let i = 8; i < 13; i+= 1.5){
+//     generateMTL("objectResources/barrel/", "Barrel.mtl", "Barrel.obj", function (barrel) {
+//         barrel.scale.setScalar(0.35);
+//         barrel.position.set(i, 0, 2);
+//         scene.add(barrel);
+//     });
+// }
 
 //skeleton & skeletonSpotLight
 let skeleton;
@@ -210,109 +210,109 @@ generateGLTF("objectResources/key/scene.gltf", (key1) => {
     scene.add(key);
 });
 
-//autopsy table
-generateGLTF("objectResources/autopsyTable/scene.gltf", (autopsyTable) => {
-    autopsyTable.scale.setScalar(1.5);
-    autopsyTable.position.set(25, 0.5, 5);
-    scene.add(autopsyTable);
-});
+// //autopsy table
+// generateGLTF("objectResources/autopsyTable/scene.gltf", (autopsyTable) => {
+//     autopsyTable.scale.setScalar(1.5);
+//     autopsyTable.position.set(25, 0.5, 5);
+//     scene.add(autopsyTable);
+// });
 
-//old lamp & old lamp spotlight
-generateGLTF("objectResources/oldLamp/scene.gltf", (oldLamp) => {
-    oldLamp.scale.setScalar(0.04);
-    oldLamp.position.set(27.75, 3.35, 5);
-    oldLamp.rotation.y = -Math.PI / 2;
-    scene.add(oldLamp);
+// //old lamp & old lamp spotlight
+// generateGLTF("objectResources/oldLamp/scene.gltf", (oldLamp) => {
+//     oldLamp.scale.setScalar(0.04);
+//     oldLamp.position.set(27.75, 3.35, 5);
+//     oldLamp.rotation.y = -Math.PI / 2;
+//     scene.add(oldLamp);
 
-    const oldLampSpotlight = new THREE.SpotLight(0xFFFFFF, 50, 0, Math.PI/3.5, 0.1);
-    oldLampSpotlight.position.set(2, 10, 13);
-    oldLampSpotlight.castShadow = true;
-    oldLamp.add(oldLampSpotlight);
+//     const oldLampSpotlight = new THREE.SpotLight(0xFFFFFF, 50, 0, Math.PI/3.5, 0.1);
+//     oldLampSpotlight.position.set(2, 10, 13);
+//     oldLampSpotlight.castShadow = true;
+//     oldLamp.add(oldLampSpotlight);
 
-    // const oldLampSpotlightHelper = new THREE.SpotLightHelper(oldLampSpotlight);
-    // scene.add(oldLampSpotlightHelper);
+//     // const oldLampSpotlightHelper = new THREE.SpotLightHelper(oldLampSpotlight);
+//     // scene.add(oldLampSpotlightHelper);
 
-    const spotlightTarget = new THREE.Object3D();
-    spotlightTarget.position.set(25, 0.5, 5); // Tentukan posisi target
-    scene.add(spotlightTarget);
-    oldLampSpotlight.target = spotlightTarget;
+//     const spotlightTarget = new THREE.Object3D();
+//     spotlightTarget.position.set(25, 0.5, 5); // Tentukan posisi target
+//     scene.add(spotlightTarget);
+//     oldLampSpotlight.target = spotlightTarget;
 
-    const oldLampPointLight = new THREE.PointLight(0xFFFFFF, 0.1, 0, 2);
-    oldLampPointLight.position.set(2, 9, 19);
-    oldLampPointLight.castShadow = true;
-    oldLamp.add(oldLampPointLight);
+//     const oldLampPointLight = new THREE.PointLight(0xFFFFFF, 0.1, 0, 2);
+//     oldLampPointLight.position.set(2, 9, 19);
+//     oldLampPointLight.castShadow = true;
+//     oldLamp.add(oldLampPointLight);
 
-    // const oldLampPointLightHelper = new THREE.PointLightHelper(oldLampPointLight, 1);
-    // scene.add(oldLampPointLightHelper);
+//     // const oldLampPointLightHelper = new THREE.PointLightHelper(oldLampPointLight, 1);
+//     // scene.add(oldLampPointLightHelper);
 
-    // Adjust shadow settings
-    oldLampSpotlight.shadow.mapSize.width = 1024;
-    oldLampSpotlight.shadow.mapSize.height = 1024;
-    oldLampSpotlight.shadow.camera.near = 0.5;
-    oldLampSpotlight.shadow.camera.far = 500;
-});
+//     // Adjust shadow settings
+//     oldLampSpotlight.shadow.mapSize.width = 1024;
+//     oldLampSpotlight.shadow.mapSize.height = 1024;
+//     oldLampSpotlight.shadow.camera.near = 0.5;
+//     oldLampSpotlight.shadow.camera.far = 500;
+// });
 
-//horrorProps & horrorPropsSpotlight
-generateGLTF("objectResources/horrorProps/scene.gltf", (horrorProps) => {
-    horrorProps.scale.setScalar(0.06);
-    horrorProps.position.set(13, 0.5, 9.5);
-    horrorProps.rotation.y = Math.PI / 2;
-    scene.add(horrorProps);
+// //horrorProps & horrorPropsSpotlight
+// generateGLTF("objectResources/horrorProps/scene.gltf", (horrorProps) => {
+//     horrorProps.scale.setScalar(0.06);
+//     horrorProps.position.set(13, 0.5, 9.5);
+//     horrorProps.rotation.y = Math.PI / 2;
+//     scene.add(horrorProps);
 
-    //spotlight
-    const horrorPropsSpotlight = new THREE.SpotLight(0xFFFFFF, 50, 10, Math.PI/8, 0.1);
-    horrorPropsSpotlight.position.set(8, 49, -1);
-    horrorPropsSpotlight.castShadow = true;
-    horrorProps.add(horrorPropsSpotlight);
+//     //spotlight
+//     const horrorPropsSpotlight = new THREE.SpotLight(0xFFFFFF, 50, 10, Math.PI/8, 0.1);
+//     horrorPropsSpotlight.position.set(8, 49, -1);
+//     horrorPropsSpotlight.castShadow = true;
+//     horrorProps.add(horrorPropsSpotlight);
 
-    //spotlight target
-    const horrorPropsSpotlightTarget = new THREE.Object3D();
-    horrorPropsSpotlightTarget.position.set(0, 1, 2); // Tentukan posisi target
-    scene.add(horrorPropsSpotlightTarget);
-    horrorPropsSpotlight.target = horrorPropsSpotlightTarget;
+//     //spotlight target
+//     const horrorPropsSpotlightTarget = new THREE.Object3D();
+//     horrorPropsSpotlightTarget.position.set(0, 1, 2); // Tentukan posisi target
+//     scene.add(horrorPropsSpotlightTarget);
+//     horrorPropsSpotlight.target = horrorPropsSpotlightTarget;
 
-    // //spotlight helper
-    // const horrorPropsSpotlightHelper = new THREE.SpotLightHelper(horrorPropsSpotlight);
-    // scene.add(horrorPropsSpotlightHelper);
+//     // //spotlight helper
+//     // const horrorPropsSpotlightHelper = new THREE.SpotLightHelper(horrorPropsSpotlight);
+//     // scene.add(horrorPropsSpotlightHelper);
 
-    // //pointlight
-    // const horrorPropsPointLight = new THREE.PointLight(0xFFFFFF, 10, 0, 2);
-    // horrorPropsPointLight.position.set(8, 49, -2);
-    // horrorPropsPointLight.castShadow = true;
-    // oldLamp.add(horrorPropsPointLight);
+//     // //pointlight
+//     // const horrorPropsPointLight = new THREE.PointLight(0xFFFFFF, 10, 0, 2);
+//     // horrorPropsPointLight.position.set(8, 49, -2);
+//     // horrorPropsPointLight.castShadow = true;
+//     // oldLamp.add(horrorPropsPointLight);
 
-    // //pointlight helper
-    // const horrorPropsPointlightHelper = new THREE.PointLightHelper(horrorPropsPointLight);
-    // scene.add(horrorPropsPointlightHelper);
+//     // //pointlight helper
+//     // const horrorPropsPointlightHelper = new THREE.PointLightHelper(horrorPropsPointLight);
+//     // scene.add(horrorPropsPointlightHelper);
 
-    //Adjust shadow settings
-    horrorPropsSpotlight.shadow.mapSize.width = 1024;
-    horrorPropsSpotlight.shadow.mapSize.height = 1024;
-    horrorPropsSpotlight.shadow.camera.near = 0.5;
-    horrorPropsSpotlight.shadow.camera.far = 500;
-});
+//     //Adjust shadow settings
+//     horrorPropsSpotlight.shadow.mapSize.width = 1024;
+//     horrorPropsSpotlight.shadow.mapSize.height = 1024;
+//     horrorPropsSpotlight.shadow.camera.near = 0.5;
+//     horrorPropsSpotlight.shadow.camera.far = 500;
+// });
 
-//table
-generateGLTF("objectResources/table/scene.gltf", (table) => {
-    table.scale.setScalar(1);
-    table.position.set(10, 0.5, 9);
-    // table.rotation.y = Math.PI / 2;
-    scene.add(table);
-});
+// //table
+// generateGLTF("objectResources/table/scene.gltf", (table) => {
+//     table.scale.setScalar(1);
+//     table.position.set(10, 0.5, 9);
+//     // table.rotation.y = Math.PI / 2;
+//     scene.add(table);
+// });
 
-//hangingCorpse
-for(let i = 2; i < 9; i+=3){
-    for(let j = 33; j < 50; j+=4){
-        generateGLTF("objectResources/corpse/scene.gltf", (hangingCorpse) => {
-            hangingCorpse.scale.setScalar(2);
-            hangingCorpse.position.set(j, 3.5, i); // z = 2, 5, 8 x = 33-55
-            hangingCorpse.rotation.y = Math.PI / 2;
-            hangingCorpse.rotation.z = -Math.PI / 2;
-            hangingCorpse.rotation.x = -Math.PI / 2;
-            scene.add(hangingCorpse);
-        });
-    }
-}
+// //hangingCorpse
+// for(let i = 2; i < 9; i+=3){
+//     for(let j = 33; j < 50; j+=4){
+//         generateGLTF("objectResources/corpse/scene.gltf", (hangingCorpse) => {
+//             hangingCorpse.scale.setScalar(2);
+//             hangingCorpse.position.set(j, 3.5, i); // z = 2, 5, 8 x = 33-55
+//             hangingCorpse.rotation.y = Math.PI / 2;
+//             hangingCorpse.rotation.z = -Math.PI / 2;
+//             hangingCorpse.rotation.x = -Math.PI / 2;
+//             scene.add(hangingCorpse);
+//         });
+//     }
+// }
 
 // emerald table
 generateGLTF("objectResources/table/scene.gltf", (table) => {
