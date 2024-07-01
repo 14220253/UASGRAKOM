@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+        {
+          "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"
+          }
+        }
+      </script>
+  <script type="module" src="main2.js"></script>
+  <style>
+    .image-container {
+      display: flex;
+      justify-content: center;
+      /* Center items horizontally */
+      position: fixed;
+      bottom: 20px;
+      /* Adjust the distance from bottom as needed */
+      left: 0;
+      right: 0;
+    }
+
+    /* Styling for each image box */
+    .image-box {
+      width: 150px;
+      height: 150px;
+      border: 5px solid black;
+      /* Border style */
+      margin: 0 5px;
+      /* Adjust margin between boxes */
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Example styling for image content */
+    /* emerald */
+    #image-box1 {
+      background-image: url('objectResources/emerald/emerald.png');
+    }
+
+    /* key */
+    #image-box2 {
+      background-image: url('objectResources/key/key.png');
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <div id="info">
+    <div id="player-position"></div>
+  </div>
+  <div class="image-container">
+    <div class="image-box" id="image-box1"></div>
+    <div class="image-box" id="image-box2"></div>
+  </div>
+</body>
+
+</html>
