@@ -17,7 +17,8 @@ const textures = {
     stone: loadTexture('textures/stone.png'),
     coalOre: loadTexture('textures/coal_ore.png'),
     ironOre: loadTexture('textures/iron_ore.png'),
-    sand: loadTexture('textures/sand.png')
+    sand: loadTexture('textures/sand.png'),
+    oakPlank: loadTexture('textures/planks_oak.png')
 }
 
 export const blocks = {
@@ -72,6 +73,11 @@ export const blocks = {
         id: 6,
         name: 'sand',
         material: new THREE.MeshPhongMaterial({map: textures.sand})
+    },
+    oakPlank: {
+        id: 7,
+        name: 'oakPlank',
+        material: new THREE.MeshPhongMaterial({map: textures.oakPlank})
     }
 }
 

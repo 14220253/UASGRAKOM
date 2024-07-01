@@ -115,7 +115,7 @@ export class Player {
                 this.input.x = this.maxSpeed;
                 break; 
             case 'KeyR':
-                this.position.set(6,3,5);
+                this.position.set(64,100,64);
                 this.velocity.set(0,0,0);
                 break; 
             case 'Space':
