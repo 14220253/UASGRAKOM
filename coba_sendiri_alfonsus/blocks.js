@@ -20,11 +20,13 @@ const textures = {
     sand: loadTexture('textures/sand.png'),
     oakPlank: loadTexture('textures/planks_oak.png'),
     oakLog: loadTexture('textures/log_oak.png'),
+    oakLogTop: loadTexture('textures/log_oak_top.png'),
     mossStone: loadTexture('textures/cobblestone_mossy.png'),
     glass: loadTexture('textures/glass_black.png'),
     mossBrick: loadTexture('textures/stonebrick_mossy.png'),
     redWool: loadTexture('textures/wool_colored_red.png'),
-    whiteWool: loadTexture('textures/wool_colored_white.png')
+    whiteWool: loadTexture('textures/wool_colored_white.png'),
+    farmland: loadTexture('textures/farmland.png')
 }
 
 export const blocks = {
@@ -88,7 +90,14 @@ export const blocks = {
     oakLog: {
         id: 8,
         name: 'oakLog',
-        material: new THREE.MeshPhongMaterial({map: textures.oakLog})
+        material: [
+            new THREE.MeshPhongMaterial({map: textures.oakLog}), //right
+            new THREE.MeshPhongMaterial({map: textures.oakLog}), //left
+            new THREE.MeshPhongMaterial({map: textures.oakLogTop}), //top
+            new THREE.MeshPhongMaterial({map: textures.oakLogTop}), //bottom
+            new THREE.MeshPhongMaterial({map: textures.oakLog}), //front
+            new THREE.MeshPhongMaterial({map: textures.oakLog}), //back
+        ]
     },
     mossStone: {
         id: 9,
@@ -114,6 +123,19 @@ export const blocks = {
         id: 13,
         name: 'whiteWool',
         material: new THREE.MeshPhongMaterial({map: textures.whiteWool})
+    },
+    farmland: {
+        id: 14,
+        name: 'farmland',
+        color: 0x559020,
+        material: [
+            new THREE.MeshPhongMaterial({map: textures.dirt}), //right
+            new THREE.MeshPhongMaterial({map: textures.dirt}), //left
+            new THREE.MeshPhongMaterial({map: textures.farmland}), //top
+            new THREE.MeshPhongMaterial({map: textures.dirt}), //bottom
+            new THREE.MeshPhongMaterial({map: textures.dirt}), //front
+            new THREE.MeshPhongMaterial({map: textures.dirt}), //back
+        ]
     }
 }
 
