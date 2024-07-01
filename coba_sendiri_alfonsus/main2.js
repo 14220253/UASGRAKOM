@@ -75,8 +75,6 @@ const pickupDistance = 5; // Adjust as needed
 let emeraldPickedUp = false;
 let keyPickedUp = false;
 function animate() {
-    const delta = clock.getDelta();
-	if ( mixer ) mixer.update( delta );
 
     if(emeraldPickedUp){
         document.getElementById('image-box1').style.backgroundImage = "url('objectResources/emerald/emerald.png')";
