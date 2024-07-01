@@ -14,9 +14,11 @@ export class Player {
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 200);
     controls = new PointerLockControls(this.camera, document.body);
     cameraHelper = new THREE.CameraHelper(this.camera);
+   
 
     constructor(scene) {
-        this.camera.position.set(80, 16, 80);
+        this.cameraHelper.visible = false;
+        this.camera.position.set(32, 64, 32);
         scene.add(this.camera);
         scene.add(this.cameraHelper);
 
@@ -27,6 +29,7 @@ export class Player {
             new THREE.CylinderGeometry(this.radius, this.radius, this.height, 16),
             new THREE.MeshBasicMaterial({wireframe: true})
         );
+        this.boundsHelper.visible = false;
         scene.add(this.boundsHelper);
     }
 
@@ -115,7 +118,7 @@ export class Player {
                 this.input.x = this.maxSpeed;
                 break; 
             case 'KeyR':
-                this.position.set(6,3,5);
+                this.position.set(64,100,64);
                 this.velocity.set(0,0,0);
                 break; 
             case 'Space':

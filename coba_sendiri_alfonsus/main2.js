@@ -9,6 +9,7 @@ import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { Reflector } from 'three/addons/objects/Reflector.js';
+import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 const stats = new Stats();
 document.body.append(stats.dom);
 
@@ -16,17 +17,17 @@ document.body.append(stats.dom);
 const renderer = new THREE.WebGLRenderer();
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setClearColor(0x80a0e0);
+renderer.setClearColor(0x000000); //0x80a0e0
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.body.appendChild(renderer.domElement);
 
 //Camera
-const orbitCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight);
-orbitCamera.position.set(-32, 16, -32);
+const orbitCamera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight);
+orbitCamera.position.set(64,100,64);
 
 const controls = new OrbitControls(orbitCamera, renderer.domElement);
-controls.target.set(16, 0, 16);
+controls.target.set(50, 64, 50);
 controls.update();
 
 //scene
@@ -40,31 +41,34 @@ const player = new Player(scene);
 const physics = new Physics(scene);
 
 function setupLights() {
-    const sun = new THREE.DirectionalLight();
-    sun.position.set(50, 50, 50);
-    sun.castShadow = true;
-    sun.shadow.camera.left = -50;
-    sun.shadow.camera.right = 50;
-    sun.shadow.camera.bottom = -50;
-    sun.shadow.camera.top = 50;
-    sun.shadow.camera.near = 0.1;
-    sun.shadow.camera.far = 100;
-    sun.shadow.bias = -0.0007;
-    sun.shadow.mapSize = new THREE.Vector2(512, 512);
-    // scene.add(sun);
+    const moon = new THREE.DirectionalLight(0x6666dd, 0.7);
+    moon.position.set(125,125,125);
+    moon.castShadow = true;
+    moon.shadow.camera.left = -100;
+    moon.shadow.camera.right = 100;
+    moon.shadow.camera.bottom = -100;
+    moon.shadow.camera.top = 100;
+    moon.shadow.camera.near = 0.1;
+    moon.shadow.camera.far = 200;
+    moon.shadow.bias = -0.0007;
+    moon.shadow.mapSize = new THREE.Vector2(512,512);
+    scene.add(moon);
 
-    // const shadowHelper = new THREE.CameraHelper(sun.shadow.camera);
-    // scene.add(shadowHelper)
+    
+
+    const shadowHelper = new THREE.CameraHelper(moon.shadow.camera);
+    shadowHelper.visible = false;
+    scene.add(shadowHelper)
+    scene.shadowHelper = shadowHelper;
 
     const ambient = new THREE.AmbientLight();
-    ambient.intensity = 0.1;
+    ambient.intensity = 0.02;
     scene.add(ambient);
 
-    //fog
-    // scene.fog = new THREE.Fog(0x000000, 0.5, 10);
-
-
+    const hemiLight = new THREE.HemisphereLight(0x222222, 0x000000, 0.4); 
+    scene.add(hemiLight);
 }
+
 
 function generateOBJ(urlOBJ, onLoad) {
     const loader = new OBJLoader();
@@ -144,6 +148,46 @@ function generateMTL(pathFolderObject, MTLName, OBJName, onLoad) {
 //         scene.add(barrel);
 //     });
 // }
+let candle;
+generateGLTF("objectResources/candle/scene.gltf", (candle1) => {
+    candle = candle1;
+    candle.scale.setScalar(1.5);
+    candle.position.set(66, 56.4, 60);
+    candle.rotation.y = 3.16
+    scene.add(candle);
+    
+    const candlePointLight = new THREE.PointLight(0xFC7703, 0.55, 0, 0.5);
+    candlePointLight.position.set(0.5, 1.6, -0.5);
+    candlePointLight.castShadow = true;
+    candle.add(candlePointLight);
+});
+
+let flower;
+generateGLTF("objectResources/flower/scene.gltf", (flower1) => {
+    flower = flower1;
+    flower.scale.setScalar(1);
+    flower.position.set(71, 56.2, 68.5);
+    flower.rotation.x = 0.5;
+    scene.add(candle);
+});
+
+let cobweb;
+generateGLTF("objectResources/bedCandle/scene.gltf", (candle2) => {
+    cobweb = candle2;
+    cobweb.scale.setScalar(0.03);
+    cobweb.position.set(71, 57, 66);
+    scene.add(cobweb);
+});
+
+generateOBJ("objectResources/skeleton/SubTool-0-3517926.OBJ", (skeleton) => {
+    skeleton.scale.setScalar( 0.5 );
+    skeleton.position.set(73, 57.8, 61.5);
+    skeleton.rotation.x = -Math.PI / 2;
+    skeleton.rotation.y = 0; 
+    skeleton.rotation.z = 0;
+    scene.add(skeleton);
+});
+
 
 //skeleton & skeletonSpotLight
 let skeleton;
@@ -809,6 +853,7 @@ const pickupDistance = 5; // Adjust as needed
 let emeraldPickedUp = false;
 let keyPickedUp = false;
 function animate() {
+
     if(emeraldPickedUp){
         document.getElementById('image-box1').style.backgroundImage = "url('objectResources/emerald/emerald.png')";
     }
@@ -964,6 +1009,6 @@ window.addEventListener("resize", () => {
 });
 
 setupLights();
-createUI(world, player);
+createUI(world, player, scene);
 
 animate();
