@@ -514,10 +514,10 @@ export class World extends THREE.Group {
                                 if (y == 56) {
                                     this.setBlockId(x,y,z, blocks.grass.id)
                                 }
-                                else if (y < 56) {
+                                else if (y < 56 && y > 50) {
                                     this.setBlockId(x,y,z, blocks.dirt.id)
                                 }
-                                else if (y > 56) {
+                                else if (y > 56 || y < 51) {
                                     this.setBlockId(x,y,z, blocks.empty.id)
                                 }
                             }
