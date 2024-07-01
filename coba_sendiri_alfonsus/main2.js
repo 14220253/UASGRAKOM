@@ -54,6 +54,8 @@ function setupLights() {
     moon.shadow.mapSize = new THREE.Vector2(512,512);
     scene.add(moon);
 
+    
+
     const shadowHelper = new THREE.CameraHelper(moon.shadow.camera);
     shadowHelper.visible = false;
     scene.add(shadowHelper)

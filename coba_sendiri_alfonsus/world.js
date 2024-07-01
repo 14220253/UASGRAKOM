@@ -456,7 +456,7 @@ export class World extends THREE.Group {
 
         // this.generateResources(rng);
         this.generateTerrain(rng);
-        this.generateHouse();
+        // this.generateHouse();
         this.generateTrees(rng);
         this.generateClouds(rng);
         this.generateMeshes();
