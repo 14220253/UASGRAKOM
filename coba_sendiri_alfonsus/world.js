@@ -983,9 +983,6 @@ export class World extends THREE.Group {
             62,57,54,7,
             61,57,53,7,
             61,57,54,7,
-            57,57,47,7,
-            56,57,47,7,
-            55,57,47,7,
             52,56,54,0,
             52,56,55,0,
             53,56,54,0,
@@ -1004,9 +1001,8 @@ export class World extends THREE.Group {
             arr.push(54, i, 55, 0);
         }
         for (let z = 46; z <= 56; z++) {
-            for(let x = 52; x >= 46; x++) {
-                arr.push(z, 56, x, 14);
-                arr.push(z, 56, x, 14);
+            for(let x = 40; x <= 50; x++) {
+                arr.push(x, 56, z, 14);
             }
         }
         for (let i = 0; i < arr.length; i+= 4) {

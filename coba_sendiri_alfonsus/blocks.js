@@ -26,7 +26,7 @@ const textures = {
     mossBrick: loadTexture('textures/stonebrick_mossy.png'),
     redWool: loadTexture('textures/wool_colored_red.png'),
     whiteWool: loadTexture('textures/wool_colored_white.png'),
-    farmland: loadTexture('textures/farmland.png')
+    farmland: loadTexture('textures/farmland_dry.png')
 }
 
 export const blocks = {

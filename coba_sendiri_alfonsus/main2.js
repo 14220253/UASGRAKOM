@@ -9,6 +9,7 @@ import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { Reflector } from 'three/addons/objects/Reflector.js';
+import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 const stats = new Stats();
 document.body.append(stats.dom);
 
@@ -64,6 +65,27 @@ function setupLights() {
     // scene.fog = new THREE.Fog(0x000000, 0.5, 10);
 
 
+}
+
+var mixer
+function generateFBX(url, onLoad) {
+    const loader = new FBXLoader();
+    loader.load(url, function ( object ) {
+        mixer = new THREE.AnimationMixer( object );
+        const action = mixer.clipAction( object.animations[ 0 ] );
+        action.play();
+        object.traverse( function ( child ) {
+            if ( child.isMesh ) {
+                child.castShadow = true;
+                child.receiveShadow = true;
+            }
+        } );
+        object.castShadow = true;
+        object.receiveShadow = true;
+        // object.position.set(64, 70, 64)
+        // object.scale.set(20, 20, 20);
+        scene.add( object );
+    } );
 }
 
 function generateOBJ(urlOBJ, onLoad) {
@@ -144,6 +166,46 @@ function generateMTL(pathFolderObject, MTLName, OBJName, onLoad) {
 //         scene.add(barrel);
 //     });
 // }
+let candle;
+generateGLTF("objectResources/candle/scene.gltf", (candle1) => {
+    candle = candle1;
+    candle.scale.setScalar(1.5);
+    candle.position.set(66, 56.4, 60);
+    candle.rotation.y = 3.16
+    scene.add(candle);
+    
+    const candlePointLight = new THREE.PointLight(0xFC7703, 0.55, 0, 0.5);
+    candlePointLight.position.set(0.5, 1.6, -0.5);
+    candlePointLight.castShadow = true;
+    candle.add(candlePointLight);
+});
+
+let flower;
+generateGLTF("objectResources/flower/scene.gltf", (flower1) => {
+    flower = flower1;
+    flower.scale.setScalar(1);
+    flower.position.set(71, 56.2, 68.5);
+    flower.rotation.x = 0.5;
+    scene.add(candle);
+});
+
+let cobweb;
+generateGLTF("objectResources/bedCandle/scene.gltf", (candle2) => {
+    cobweb = candle2;
+    cobweb.scale.setScalar(0.03);
+    cobweb.position.set(71, 57, 66);
+    scene.add(cobweb);
+});
+
+generateOBJ("objectResources/skeleton/SubTool-0-3517926.OBJ", (skeleton) => {
+    skeleton.scale.setScalar( 0.5 );
+    skeleton.position.set(73, 57.8, 61.5);
+    skeleton.rotation.x = -Math.PI / 2;
+    skeleton.rotation.y = 0; 
+    skeleton.rotation.z = 0;
+    scene.add(skeleton);
+});
+
 
 //skeleton & skeletonSpotLight
 let skeleton;
@@ -809,6 +871,9 @@ const pickupDistance = 5; // Adjust as needed
 let emeraldPickedUp = false;
 let keyPickedUp = false;
 function animate() {
+    const delta = clock.getDelta();
+	if ( mixer ) mixer.update( delta );
+
     if(emeraldPickedUp){
         document.getElementById('image-box1').style.backgroundImage = "url('objectResources/emerald/emerald.png')";
     }
