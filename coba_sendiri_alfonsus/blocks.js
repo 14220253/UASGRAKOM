@@ -18,7 +18,13 @@ const textures = {
     coalOre: loadTexture('textures/coal_ore.png'),
     ironOre: loadTexture('textures/iron_ore.png'),
     sand: loadTexture('textures/sand.png'),
-    oakPlank: loadTexture('textures/planks_oak.png')
+    oakPlank: loadTexture('textures/planks_oak.png'),
+    oakLog: loadTexture('textures/log_oak.png'),
+    mossStone: loadTexture('textures/cobblestone_mossy.png'),
+    glass: loadTexture('textures/glass_black.png'),
+    mossBrick: loadTexture('textures/stonebrick_mossy.png'),
+    redWool: loadTexture('textures/wool_colored_red.png'),
+    whiteWool: loadTexture('textures/wool_colored_white.png')
 }
 
 export const blocks = {
@@ -78,6 +84,36 @@ export const blocks = {
         id: 7,
         name: 'oakPlank',
         material: new THREE.MeshPhongMaterial({map: textures.oakPlank})
+    },
+    oakLog: {
+        id: 8,
+        name: 'oakLog',
+        material: new THREE.MeshPhongMaterial({map: textures.oakLog})
+    },
+    mossStone: {
+        id: 9,
+        name: 'mossStone',
+        material: new THREE.MeshPhongMaterial({map: textures.mossStone})
+    },
+    mossBrick: {
+        id: 10,
+        name: 'mossBrick',
+        material: new THREE.MeshPhongMaterial({map: textures.mossBrick})
+    },
+    glass: {
+        id: 11,
+        name: 'glass',
+        material: new THREE.MeshPhongMaterial({map: textures.glass})
+    },
+    redWool: {
+        id: 12,
+        name: 'redWool',
+        material: new THREE.MeshPhongMaterial({map: textures.redWool})
+    },
+    whiteWool: {
+        id: 13,
+        name: 'whiteWool',
+        material: new THREE.MeshPhongMaterial({map: textures.whiteWool})
     }
 }
 

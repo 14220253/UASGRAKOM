@@ -439,8 +439,8 @@ export class World extends THREE.Group {
 
         // this.generateResources(rng);
         this.generateTerrain(rng);
-        this.generateMeshes();
         this.generateHouse();
+        this.generateMeshes();
     }
 
     /**
@@ -508,27 +508,29 @@ export class World extends THREE.Group {
                 //Fill in all blocks at or below the terrain height
                 for (let y = 0; y <= this.size.height; y++) {
                     //reserved space
-                    if ((x > this.size.width/2 - 24 && x < this.size.width/2 + 24) && (z > this.size.width/2 - 24 && z < this.size.width/2 + 24)) {
-                        if (y == 56) {
-                            this.setBlockId(x,y,z, blocks.grass.id)
-                        }
-                        else if (y < 56) {
-                            this.setBlockId(x,y,z, blocks.dirt.id)
-                        }
-                        else if (y > 56) {
-                            this.setBlockId(x,y,z, blocks.empty.id)
-                        }
-                    }
-                    else {
-                        //else
-                        if (y > 55 && y < height && this.getBlock(x,y,z).id === blocks.empty.id) {
-                            this.setBlockId(x,y,z, blocks.dirt.id);
-                        } else if (y === height) {
-                            this.setBlockId(x,y,z,blocks.grass.id);
-                        } else if (y > height) {
-                            this.setBlockId(x,y,z,blocks.empty.id);
-                        }
-                    }
+                        // if (this.getBlock(x,y,z) != blocks.oakPlank){
+                            if ((x > this.size.width/2 - 24 && x < this.size.width/2 + 24) && (z > this.size.width/2 - 24 && z < this.size.width/2 + 24)) {
+                                if (y == 56) {
+                                    this.setBlockId(x,y,z, blocks.grass.id)
+                                }
+                                else if (y < 56) {
+                                    this.setBlockId(x,y,z, blocks.dirt.id)
+                                }
+                                else if (y > 56) {
+                                    this.setBlockId(x,y,z, blocks.empty.id)
+                                }
+                            }
+                            else {
+                                //else
+                                if (y > 55 && y < height && this.getBlock(x,y,z).id === blocks.empty.id) {
+                                    this.setBlockId(x,y,z, blocks.dirt.id);
+                                } else if (y === height) {
+                                    this.setBlockId(x,y,z,blocks.grass.id);
+                                } else if (y > height) {
+                                    this.setBlockId(x,y,z,blocks.empty.id);
+                                }
+                            }
+                    // }
                 }
             }
         }
@@ -579,7 +581,6 @@ export class World extends THREE.Group {
 
     generateHouse() {
         let url = "house/house.txt";
-        this.setBlockId(64,57,64,blocks.oakPlank.id);
 
             fetch(url)
                 .then(response => {
@@ -591,7 +592,10 @@ export class World extends THREE.Group {
                 .then(data => {
                     let lines = data.split('\n');
                     let result = lines.map(line => line.split(' '));
-                    console.log(result[0][0]);
+                    // for (let i = 0; i < lines.length; i++) {
+                    //     this.setBlockId(Number(result[i][0]), Number(result[i][1]), Number(result[i][2]), Number(result[i][3]))
+                    // }
+                this.setBlockId(Number(result[0][0]), Number(result[0][1]), Number(result[0][2]), blocks.oakLog.id)
                 })
                 .catch(error => {
                     console.log("error");
