@@ -140,14 +140,14 @@ function generateMTL(pathFolderObject, MTLName, OBJName, onLoad) {
 }
 //object
 
-// //barrel1-5
-// for(let i = 8; i < 13; i+= 1.5){
-//     generateMTL("objectResources/barrel/", "Barrel.mtl", "Barrel.obj", function (barrel) {
-//         barrel.scale.setScalar(0.35);
-//         barrel.position.set(i, 0, 2);
-//         scene.add(barrel);
-//     });
-// }
+//barrel1-5
+for(let i = 8; i < 13; i+= 1.5){
+    generateMTL("objectResources/barrel/", "Barrel.mtl", "Barrel.obj", function (barrel) {
+        barrel.scale.setScalar(0.35);
+        barrel.position.set(i, 0, 2);
+        scene.add(barrel);
+    });
+}
 let candle;
 generateGLTF("objectResources/candle/scene.gltf", (candle1) => {
     candle = candle1;
@@ -276,10 +276,10 @@ generateGLTF("objectResources/key/scene.gltf", (key1) => {
 //     // const oldLampSpotlightHelper = new THREE.SpotLightHelper(oldLampSpotlight);
 //     // scene.add(oldLampSpotlightHelper);
 
-//     const spotlightTarget = new THREE.Object3D();
-//     spotlightTarget.position.set(25, 0.5, 5); // Tentukan posisi target
-//     scene.add(spotlightTarget);
-//     oldLampSpotlight.target = spotlightTarget;
+//     const oldLampSpotlightTarget = new THREE.Object3D();
+//     oldLampSpotlightTarget.position.set(25, 0.5, 5); // Tentukan posisi target
+//     scene.add(oldLampSpotlightTarget);
+//     oldLampSpotlight.target = oldLampSpotlightTarget;
 
 //     const oldLampPointLight = new THREE.PointLight(0xFFFFFF, 0.1, 0, 2);
 //     oldLampPointLight.position.set(2, 9, 19);
@@ -319,30 +319,20 @@ generateGLTF("objectResources/key/scene.gltf", (key1) => {
 //     // const horrorPropsSpotlightHelper = new THREE.SpotLightHelper(horrorPropsSpotlight);
 //     // scene.add(horrorPropsSpotlightHelper);
 
-//     // //pointlight
-//     // const horrorPropsPointLight = new THREE.PointLight(0xFFFFFF, 10, 0, 2);
-//     // horrorPropsPointLight.position.set(8, 49, -2);
-//     // horrorPropsPointLight.castShadow = true;
-//     // oldLamp.add(horrorPropsPointLight);
-
-//     // //pointlight helper
-//     // const horrorPropsPointlightHelper = new THREE.PointLightHelper(horrorPropsPointLight);
-//     // scene.add(horrorPropsPointlightHelper);
-
-//     //Adjust shadow settings
+//     //Adjust shadow settings 
 //     horrorPropsSpotlight.shadow.mapSize.width = 1024;
 //     horrorPropsSpotlight.shadow.mapSize.height = 1024;
 //     horrorPropsSpotlight.shadow.camera.near = 0.5;
 //     horrorPropsSpotlight.shadow.camera.far = 500;
 // });
 
-// //table
-// generateGLTF("objectResources/table/scene.gltf", (table) => {
-//     table.scale.setScalar(1);
-//     table.position.set(10, 0.5, 9);
-//     // table.rotation.y = Math.PI / 2;
-//     scene.add(table);
-// });
+//table
+generateGLTF("objectResources/table/scene.gltf", (table) => {
+    table.scale.setScalar(1);
+    table.position.set(10, 0.5, 9);
+    // table.rotation.y = Math.PI / 2;
+    scene.add(table);
+});
 
 // //hangingCorpse
 // for(let i = 2; i < 9; i+=3){
@@ -377,13 +367,13 @@ generateGLTF("objectResources/emerald/scene.gltf", (emerald1) => {
     scene.add(emerald);
 });
 
-//treasure
-generateGLTF("objectResources/treasureChest/scene.gltf", (treasure) => {
-    treasure.scale.setScalar(2);
-    treasure.position.set(55, 1.2, 37.8);
-    treasure.rotation.y = Math.PI;
-    scene.add(treasure);
-});
+// //treasure
+// generateGLTF("objectResources/treasureChest/scene.gltf", (treasure) => {
+//     treasure.scale.setScalar(2);
+//     treasure.position.set(55, 1.2, 37.8);
+//     treasure.rotation.y = Math.PI;
+//     scene.add(treasure);
+// });
 
 //pickupMessage
 const pickupMessage = document.createElement('div');
@@ -427,147 +417,29 @@ unlockEmeraldDoorMessage.textContent = 'Press E to unlock';
 document.body.appendChild(unlockEmeraldDoorMessage);
 
 // longLamp and pointLights
-generateGLTF("objectResources/longLamp/scene.gltf", (longLamp) => { // hijau
-    longLamp.scale.setScalar(1);
-    longLamp.position.set(15, 5.5, 5);
-    longLamp.rotation.y = Math.PI / 2;
-    longLamp.rotation.z = -Math.PI / 2;
-    longLamp.rotation.x = -Math.PI / 2;
-    scene.add(longLamp);
-
-    const longLampSpotLight = new THREE.SpotLight(0x0a5c47, 50, 10, Math.PI / 2, 0.1);
-    longLampSpotLight.position.set(0, 0.1, 0);
-    longLampSpotLight.castShadow = true;
-    longLamp.add(longLampSpotLight);
-
-    //spotlight target
-    const longLampSpotLightTarget = new THREE.Object3D();
-    longLampSpotLightTarget.position.set(0, 5, 0); // Tentukan posisi target
-    longLamp.add(longLampSpotLightTarget);
-    longLampSpotLight.target = longLampSpotLightTarget;
-
-    // const longLampSpotLightHelper = new THREE.SpotLightHelper(longLampSpotLight);
-    // scene.add(longLampSpotLightHelper);
-
-    longLampSpotLight.shadow.mapSize.width = 1024;
-    longLampSpotLight.shadow.mapSize.height = 1024;
-    longLampSpotLight.shadow.camera.near = 0.5;
-    longLampSpotLight.shadow.camera.far = 500;
-});
-
-generateGLTF("objectResources/longLamp/scene.gltf", (longLamp) => { // merah
-    longLamp.scale.setScalar(1);
-    longLamp.position.set(41, 5.5, 5);
-    longLamp.rotation.y = Math.PI / 2;
-    longLamp.rotation.z = -Math.PI / 2;
-    longLamp.rotation.x = -Math.PI / 2;
-    scene.add(longLamp);
-
-    const longLampSpotLight = new THREE.SpotLight(0xad0707, 50, 10, Math.PI / 2, 0.1);
-    longLampSpotLight.position.set(0, 0.1, 0);
-    longLampSpotLight.castShadow = true;
-    longLamp.add(longLampSpotLight);
-
-    //spotlight target
-    const longLampSpotLightTarget = new THREE.Object3D();
-    longLampSpotLightTarget.position.set(0, 5, 0); // Tentukan posisi target
-    longLamp.add(longLampSpotLightTarget);
-    longLampSpotLight.target = longLampSpotLightTarget;
-
-    // const longLampSpotLightHelper = new THREE.SpotLightHelper(longLampSpotLight);
-    // scene.add(longLampSpotLightHelper);
-
-    longLampSpotLight.shadow.mapSize.width = 1024;
-    longLampSpotLight.shadow.mapSize.height = 1024;
-    longLampSpotLight.shadow.camera.near = 0.5;
-    longLampSpotLight.shadow.camera.far = 500;
-});
-
-generateGLTF("objectResources/longLamp/scene.gltf", (longLamp) => { // merah
-    longLamp.scale.setScalar(1);
-    longLamp.position.set(60, 5.5, 5.5);
-    longLamp.rotation.y = Math.PI / 2;
-    longLamp.rotation.z = -Math.PI / 2;
-    longLamp.rotation.x = -Math.PI / 2;
-    scene.add(longLamp);
-
-    const longLampSpotLight = new THREE.SpotLight(0xad0707, 10, 10, Math.PI / 2, 0.1);
-    longLampSpotLight.position.set(0, 0.1, 0);
-    longLampSpotLight.castShadow = true;
-    longLamp.add(longLampSpotLight);
-
-    //spotlight target
-    const longLampSpotLightTarget = new THREE.Object3D();
-    longLampSpotLightTarget.position.set(0, 5, 0); // Tentukan posisi target
-    longLamp.add(longLampSpotLightTarget);
-    longLampSpotLight.target = longLampSpotLightTarget;
-
-    // const longLampSpotLightHelper = new THREE.SpotLightHelper(longLampSpotLight);
-    // scene.add(longLampSpotLightHelper);
-
-    longLampSpotLight.shadow.mapSize.width = 1024;
-    longLampSpotLight.shadow.mapSize.height = 1024;
-    longLampSpotLight.shadow.camera.near = 0.5;
-    longLampSpotLight.shadow.camera.far = 500;
-});
-
-generateGLTF("objectResources/longLamp/scene.gltf", (longLamp) => { // merah
-    longLamp.scale.setScalar(1);
-    longLamp.position.set(80, 5.5, 5.5);
-    longLamp.rotation.y = Math.PI / 2;
-    longLamp.rotation.z = -Math.PI / 2;
-    longLamp.rotation.x = -Math.PI / 2;
-    scene.add(longLamp);
-
-    const longLampSpotLight = new THREE.SpotLight(0xad0707, 10, 10, Math.PI / 2, 0.1);
-    longLampSpotLight.position.set(0, 0.1, 0);
-    longLampSpotLight.castShadow = true;
-    longLamp.add(longLampSpotLight);
-
-    //spotlight target
-    const longLampSpotLightTarget = new THREE.Object3D();
-    longLampSpotLightTarget.position.set(0, 5, 0); // Tentukan posisi target
-    longLamp.add(longLampSpotLightTarget);
-    longLampSpotLight.target = longLampSpotLightTarget;
-
-    // const longLampSpotLightHelper = new THREE.SpotLightHelper(longLampSpotLight);
-    // scene.add(longLampSpotLightHelper);
-
-    longLampSpotLight.shadow.mapSize.width = 1024;
-    longLampSpotLight.shadow.mapSize.height = 1024;
-    longLampSpotLight.shadow.camera.near = 0.5;
-    longLampSpotLight.shadow.camera.far = 500;
-});
 
 //flickering light
 let flickeringLight;
-generateGLTF("objectResources/longLamp/scene.gltf", (longLamp) => { // putih emerald
-    longLamp.scale.setScalar(1);
-    longLamp.position.set(80, 5.5, 42.5);
-    longLamp.rotation.y = Math.PI / 2;
-    longLamp.rotation.z = -Math.PI / 2;
-    longLamp.rotation.x = -Math.PI / 2;
-    scene.add(longLamp);
 
-    flickeringLight = new THREE.SpotLight(0xFFFFFF, 10, 10, Math.PI / 2, 0.1);
-    flickeringLight.position.set(0, 0.1, 0);
-    flickeringLight.castShadow = true;
-    longLamp.add(flickeringLight);
+flickeringLight = new THREE.SpotLight(0xFFFFFF, 10, 10, Math.PI / 2, 0.1);
+flickeringLight.position.set(80, 5.5, 42.5);
+flickeringLight.castShadow = true;
+scene.add(flickeringLight);
 
-    // spotlight target
-    const longLampSpotLightTarget = new THREE.Object3D();
-    longLampSpotLightTarget.position.set(0, 5, 0); // Tentukan posisi target
-    longLamp.add(longLampSpotLightTarget);
-    flickeringLight.target = longLampSpotLightTarget;
+// spotlight target
+const longLampSpotLightTargett = new THREE.Object3D();
+longLampSpotLightTargett.position.set(80, 0, 42.5); // Tentukan posisi target
+scene.add(longLampSpotLightTargett);
+flickeringLight.target = longLampSpotLightTargett;
 
-    // const longLampSpotLightHelper = new THREE.SpotLightHelper(flickeringLight);
-    // scene.add(longLampSpotLightHelper);
+// const longLampSpotLightHelperr = new THREE.SpotLightHelper(flickeringLight);
+// scene.add(longLampSpotLightHelperr);
 
-    flickeringLight.shadow.mapSize.width = 1024;
-    flickeringLight.shadow.mapSize.height = 1024;
-    flickeringLight.shadow.camera.near = 0.5;
-    flickeringLight.shadow.camera.far = 500;
-});
+flickeringLight.shadow.mapSize.width = 1024;
+flickeringLight.shadow.mapSize.height = 1024;
+flickeringLight.shadow.camera.near = 0.5;
+flickeringLight.shadow.camera.far = 500;
+
 
 let clock = new THREE.Clock();
 let flickerSpeed = 10; // Increased speed for more noticeable flicker
@@ -577,202 +449,6 @@ function updateFlickeringLight(light, time) {
     const flicker = Math.sin(time * flickerSpeed) * (flickerIntensity / 2) + (flickerIntensity / 2);
     light.intensity = flicker;
 }
-
-generateGLTF("objectResources/longLamp/scene.gltf", (longLamp) => { // putih treasure
-    longLamp.scale.setScalar(1);
-    longLamp.position.set(55, 5.5, 37.8);
-    longLamp.rotation.y = Math.PI / 2;
-    longLamp.rotation.z = -Math.PI / 2;
-    longLamp.rotation.x = -Math.PI / 2;
-    scene.add(longLamp);
-
-    const longLampSpotLight = new THREE.SpotLight(0xFFFFFF, 50, 10, Math.PI / 3, 0.1);
-    longLampSpotLight.position.set(0, 0.1, 0);
-    longLampSpotLight.castShadow = true;
-    longLamp.add(longLampSpotLight);
-
-    //spotlight target
-    const longLampSpotLightTarget = new THREE.Object3D();
-    longLampSpotLightTarget.position.set(0, 5, 0); // Tentukan posisi target
-    longLamp.add(longLampSpotLightTarget);
-    longLampSpotLight.target = longLampSpotLightTarget;
-
-    // const longLampSpotLightHelper = new THREE.SpotLightHelper(longLampSpotLight);
-    // scene.add(longLampSpotLightHelper);
-
-    longLampSpotLight.shadow.mapSize.width = 1024;
-    longLampSpotLight.shadow.mapSize.height = 1024;
-    longLampSpotLight.shadow.camera.near = 0.5;
-    longLampSpotLight.shadow.camera.far = 500;
-});
-
-generateGLTF("objectResources/longLamp/scene.gltf", (longLamp) => { // hijau
-    longLamp.scale.setScalar(1);
-    longLamp.position.set(55, 5.5, 15.5);
-    longLamp.rotation.y = Math.PI / 2;
-    longLamp.rotation.z = -Math.PI / 2;
-    longLamp.rotation.x = -Math.PI / 2;
-    scene.add(longLamp);
-
-    const longLampSpotLight = new THREE.SpotLight(0x0a5c47, 30, 10, Math.PI / 2, 0.1);
-    longLampSpotLight.position.set(0, 0.1, 0);
-    longLampSpotLight.castShadow = true;
-    longLamp.add(longLampSpotLight);
-
-    //spotlight target
-    const longLampSpotLightTarget = new THREE.Object3D();
-    longLampSpotLightTarget.position.set(0, 5, 0); // Tentukan posisi target
-    longLamp.add(longLampSpotLightTarget);
-    longLampSpotLight.target = longLampSpotLightTarget;
-
-    // const longLampSpotLightHelper = new THREE.SpotLightHelper(longLampSpotLight);
-    // scene.add(longLampSpotLightHelper);
-
-    longLampSpotLight.shadow.mapSize.width = 1024;
-    longLampSpotLight.shadow.mapSize.height = 1024;
-    longLampSpotLight.shadow.camera.near = 0.5;
-    longLampSpotLight.shadow.camera.far = 500;
-});
-
-generateGLTF("objectResources/longLamp/scene.gltf", (longLamp) => { // hijau
-    longLamp.scale.setScalar(1);
-    longLamp.position.set(35, 5.5, 15.5);
-    longLamp.rotation.y = Math.PI / 2;
-    longLamp.rotation.z = -Math.PI / 2;
-    longLamp.rotation.x = -Math.PI / 2;
-    scene.add(longLamp);
-
-    const longLampSpotLight = new THREE.SpotLight(0x0a5c47, 30, 10, Math.PI / 2, 0.1);
-    longLampSpotLight.position.set(0, 0.1, 0);
-    longLampSpotLight.castShadow = true;
-    longLamp.add(longLampSpotLight);
-
-    //spotlight target
-    const longLampSpotLightTarget = new THREE.Object3D();
-    longLampSpotLightTarget.position.set(0, 5, 0); // Tentukan posisi target
-    longLamp.add(longLampSpotLightTarget);
-    longLampSpotLight.target = longLampSpotLightTarget;
-
-    // const longLampSpotLightHelper = new THREE.SpotLightHelper(longLampSpotLight);
-    // scene.add(longLampSpotLightHelper);
-
-    longLampSpotLight.shadow.mapSize.width = 1024;
-    longLampSpotLight.shadow.mapSize.height = 1024;
-    longLampSpotLight.shadow.camera.near = 0.5;
-    longLampSpotLight.shadow.camera.far = 500;
-});
-
-generateGLTF("objectResources/longLamp/scene.gltf", (longLamp) => { // hijau
-    longLamp.scale.setScalar(1);
-    longLamp.position.set(55, 5.5, 25);
-    longLamp.rotation.y = Math.PI / 2;
-    longLamp.rotation.z = -Math.PI / 2;
-    longLamp.rotation.x = -Math.PI / 2;
-    scene.add(longLamp);
-
-    const longLampSpotLight = new THREE.SpotLight(0x0a5c47, 30, 10, Math.PI / 2, 0.1);
-    longLampSpotLight.position.set(0, 0.1, 0);
-    longLampSpotLight.castShadow = true;
-    longLamp.add(longLampSpotLight);
-
-    //spotlight target
-    const longLampSpotLightTarget = new THREE.Object3D();
-    longLampSpotLightTarget.position.set(0, 5, 0); // Tentukan posisi target
-    longLamp.add(longLampSpotLightTarget);
-    longLampSpotLight.target = longLampSpotLightTarget;
-
-    // const longLampSpotLightHelper = new THREE.SpotLightHelper(longLampSpotLight);
-    // scene.add(longLampSpotLightHelper);
-
-    longLampSpotLight.shadow.mapSize.width = 1024;
-    longLampSpotLight.shadow.mapSize.height = 1024;
-    longLampSpotLight.shadow.camera.near = 0.5;
-    longLampSpotLight.shadow.camera.far = 500;
-});
-
-generateGLTF("objectResources/longLamp/scene.gltf", (longLamp) => { // hijau
-    longLamp.scale.setScalar(1);
-    longLamp.position.set(55, 5.5, 50);
-    longLamp.rotation.y = Math.PI / 2;
-    longLamp.rotation.z = -Math.PI / 2;
-    longLamp.rotation.x = -Math.PI / 2;
-    scene.add(longLamp);
-
-    const longLampSpotLight = new THREE.SpotLight(0x0a5c47, 30, 10, Math.PI / 2, 0.1);
-    longLampSpotLight.position.set(0, 0.1, 0);
-    longLampSpotLight.castShadow = true;
-    longLamp.add(longLampSpotLight);
-
-    //spotlight target
-    const longLampSpotLightTarget = new THREE.Object3D();
-    longLampSpotLightTarget.position.set(0, 5, 0); // Tentukan posisi target
-    longLamp.add(longLampSpotLightTarget);
-    longLampSpotLight.target = longLampSpotLightTarget;
-
-    // const longLampSpotLightHelper = new THREE.SpotLightHelper(longLampSpotLight);
-    // scene.add(longLampSpotLightHelper);
-
-    longLampSpotLight.shadow.mapSize.width = 1024;
-    longLampSpotLight.shadow.mapSize.height = 1024;
-    longLampSpotLight.shadow.camera.near = 0.5;
-    longLampSpotLight.shadow.camera.far = 500;
-});
-
-generateGLTF("objectResources/longLamp/scene.gltf", (longLamp) => { // hijau
-    longLamp.scale.setScalar(1);
-    longLamp.position.set(70, 5.5, 37);
-    longLamp.rotation.y = Math.PI / 2;
-    longLamp.rotation.z = -Math.PI / 2;
-    longLamp.rotation.x = -Math.PI / 2;
-    scene.add(longLamp);
-
-    const longLampSpotLight = new THREE.SpotLight(0x0a5c47, 10, 10, Math.PI / 2, 0.1);
-    longLampSpotLight.position.set(0, 0.1, 0);
-    longLampSpotLight.castShadow = true;
-    longLamp.add(longLampSpotLight);
-
-    //spotlight target
-    const longLampSpotLightTarget = new THREE.Object3D();
-    longLampSpotLightTarget.position.set(0, 5, 0); // Tentukan posisi target
-    longLamp.add(longLampSpotLightTarget);
-    longLampSpotLight.target = longLampSpotLightTarget;
-
-    // const longLampSpotLightHelper = new THREE.SpotLightHelper(longLampSpotLight);
-    // scene.add(longLampSpotLightHelper);
-
-    longLampSpotLight.shadow.mapSize.width = 1024;
-    longLampSpotLight.shadow.mapSize.height = 1024;
-    longLampSpotLight.shadow.camera.near = 0.5;
-    longLampSpotLight.shadow.camera.far = 500;
-});
-
-generateGLTF("objectResources/longLamp/scene.gltf", (longLamp) => { // hijau
-    longLamp.scale.setScalar(1);
-    longLamp.position.set(40, 5.5, 37);
-    longLamp.rotation.y = Math.PI / 2;
-    longLamp.rotation.z = -Math.PI / 2;
-    longLamp.rotation.x = -Math.PI / 2;
-    scene.add(longLamp);
-
-    const longLampSpotLight = new THREE.SpotLight(0x0a5c47, 10, 10, Math.PI / 2, 0.1);
-    longLampSpotLight.position.set(0, 0.1, 0);
-    longLampSpotLight.castShadow = true;
-    longLamp.add(longLampSpotLight);
-
-    //spotlight target
-    const longLampSpotLightTarget = new THREE.Object3D();
-    longLampSpotLightTarget.position.set(0, 5, 0); // Tentukan posisi target
-    longLamp.add(longLampSpotLightTarget);
-    longLampSpotLight.target = longLampSpotLightTarget;
-
-    // const longLampSpotLightHelper = new THREE.SpotLightHelper(longLampSpotLight);
-    // scene.add(longLampSpotLightHelper);
-
-    longLampSpotLight.shadow.mapSize.width = 1024;
-    longLampSpotLight.shadow.mapSize.height = 1024;
-    longLampSpotLight.shadow.camera.near = 0.5;
-    longLampSpotLight.shadow.camera.far = 500;
-});
 
 let flickeringLight2;
 generateGLTF("objectResources/longLamp/scene.gltf", (longLamp) => { // putih
@@ -803,35 +479,233 @@ generateGLTF("objectResources/longLamp/scene.gltf", (longLamp) => { // putih
     flickeringLight2.shadow.camera.far = 500;
 });
 
-generateGLTF("objectResources/longLamp/scene.gltf", (longLamp) => { // hijau
-    longLamp.scale.setScalar(1);
-    longLamp.position.set(72.5, 5.5, 78);
-    longLamp.rotation.y = Math.PI / 2;
-    longLamp.rotation.z = -Math.PI / 2;
-    longLamp.rotation.x = -Math.PI / 2;
-    scene.add(longLamp);
+// const longLampSpotLight = new THREE.SpotLight(0x0a5c47, 50, 10, Math.PI / 2, 0.1);
+//     longLampSpotLight.position.set(15, 5.5, 5);
+//     longLampSpotLight.castShadow = true;
+//     scene.add(longLampSpotLight);
 
-    const longLampSpotLight = new THREE.SpotLight(0x0a5c47, 30, 10, Math.PI / 2, 0.1);
-    longLampSpotLight.position.set(0, 0.1, 0);
-    longLampSpotLight.castShadow = true;
-    longLamp.add(longLampSpotLight);
+//     //spotlight target
+//     const longLampSpotLightTarget = new THREE.Object3D();
+//     longLampSpotLightTarget.position.set(15, 0, 5); // Tentukan posisi target
+//     scene.add(longLampSpotLightTarget);
+//     longLampSpotLight.target = longLampSpotLightTarget;
 
-    //spotlight target
-    const longLampSpotLightTarget = new THREE.Object3D();
-    longLampSpotLightTarget.position.set(0, 5, 0); // Tentukan posisi target
-    longLamp.add(longLampSpotLightTarget);
-    longLampSpotLight.target = longLampSpotLightTarget;
+//     // const longLampSpotLightHelper = new THREE.SpotLightHelper(longLampSpotLight);
+//     // scene.add(longLampSpotLightHelper);
 
-    // const longLampSpotLightHelper = new THREE.SpotLightHelper(longLampSpotLight);
-    // scene.add(longLampSpotLightHelper);
+//     longLampSpotLight.shadow.mapSize.width = 1024;
+//     longLampSpotLight.shadow.mapSize.height = 1024;
+//     longLampSpotLight.shadow.camera.near = 0.5;
+//     longLampSpotLight.shadow.camera.far = 500;
 
-    longLampSpotLight.shadow.mapSize.width = 1024;
-    longLampSpotLight.shadow.mapSize.height = 1024;
-    longLampSpotLight.shadow.camera.near = 0.5;
-    longLampSpotLight.shadow.camera.far = 500;
-});
+//     const longLampSpotLight1 = new THREE.SpotLight(0xad0707, 50, 10, Math.PI / 2, 0.1);
+//     longLampSpotLight1.position.set(41, 5.5, 5);
+//     longLampSpotLight1.castShadow = true;
+//     scene.add(longLampSpotLight1);
 
+//     //spotlight target
+//     const longLampSpotLightTarget1 = new THREE.Object3D();
+//     longLampSpotLightTarget1.position.set(41, 0, 5); // Tentukan posisi target
+//     scene.add(longLampSpotLightTarget1);
+//     longLampSpotLight1.target = longLampSpotLightTarget1;
 
+//     // const longLampSpotLightHelper1 = new THREE.SpotLightHelper(longLampSpotLight1);
+//     // scene.add(longLampSpotLightHelper1);
+
+//     longLampSpotLight1.shadow.mapSize.width = 1024;
+//     longLampSpotLight1.shadow.mapSize.height = 1024;
+//     longLampSpotLight1.shadow.camera.near = 0.5;
+//     longLampSpotLight1.shadow.camera.far = 500;
+
+//     const longLampSpotLight2 = new THREE.SpotLight(0xad0707, 10, 10, Math.PI / 2, 0.1);
+//     longLampSpotLight2.position.set(60, 5.5, 5.5);
+//     longLampSpotLight2.castShadow = true;
+//     scene.add(longLampSpotLight2);
+
+//     //spotlight target
+//     const longLampSpotLightTarget2 = new THREE.Object3D();
+//     longLampSpotLightTarget2.position.set(60, 0, 5.5); // Tentukan posisi target
+//     scene.add(longLampSpotLightTarget2);
+//     longLampSpotLight2.target = longLampSpotLightTarget2;
+
+//     // const longLampSpotLightHelper2 = new THREE.SpotLightHelper(longLampSpotLight2);
+//     // scene.add(longLampSpotLightHelper2);
+
+//     longLampSpotLight2.shadow.mapSize.width = 1024;
+//     longLampSpotLight2.shadow.mapSize.height = 1024;
+//     longLampSpotLight2.shadow.camera.near = 0.5;
+//     longLampSpotLight2.shadow.camera.far = 500;
+
+//     const longLampSpotLight3 = new THREE.SpotLight(0xad0707, 10, 10, Math.PI / 2, 0.1);
+//     longLampSpotLight3.position.set(80, 5.5, 5.5);
+//     longLampSpotLight3.castShadow = true;
+//     scene.add(longLampSpotLight3);
+
+//     //spotlight target
+//     const longLampSpotLightTarget3 = new THREE.Object3D();
+//     longLampSpotLightTarget3.position.set(80, 0, 5.5); // Tentukan posisi target
+//     scene.add(longLampSpotLightTarget3);
+//     longLampSpotLight3.target = longLampSpotLightTarget3;
+
+//     // const longLampSpotLightHelper3 = new THREE.SpotLightHelper(longLampSpotLight3);
+//     // scene.add(longLampSpotLightHelper3);
+
+//     longLampSpotLight3.shadow.mapSize.width = 1024;
+//     longLampSpotLight3.shadow.mapSize.height = 1024;
+//     longLampSpotLight3.shadow.camera.near = 0.5;
+//     longLampSpotLight3.shadow.camera.far = 500;
+
+//     const longLampSpotLight4 = new THREE.SpotLight(0xFFFFFF, 50, 10, Math.PI / 3, 0.1);
+//     longLampSpotLight4.position.set(55, 5.5, 37.8);
+//     longLampSpotLight4.castShadow = true;
+//     scene.add(longLampSpotLight4);
+
+//     //spotlight target
+//     const longLampSpotLightTarget4 = new THREE.Object3D();
+//     longLampSpotLightTarget4.position.set(55, 0, 37.8); // Tentukan posisi target
+//     scene.add(longLampSpotLightTarget4);
+//     longLampSpotLight4.target = longLampSpotLightTarget4;
+
+//     // const longLampSpotLightHelper4 = new THREE.SpotLightHelper(longLampSpotLight4);
+//     // scene.add(longLampSpotLightHelper4);
+
+//     longLampSpotLight4.shadow.mapSize.width = 1024;
+//     longLampSpotLight4.shadow.mapSize.height = 1024;
+//     longLampSpotLight4.shadow.camera.near = 0.5;
+//     longLampSpotLight4.shadow.camera.far = 500;
+
+//     const longLampSpotLight5 = new THREE.SpotLight(0x0a5c47, 30, 10, Math.PI / 2, 0.1);
+//     longLampSpotLight5.position.set(55, 5.5, 15.5);
+//     longLampSpotLight5.castShadow = true;
+//     scene.add(longLampSpotLight5);
+
+//     //spotlight target
+//     const longLampSpotLightTarget5 = new THREE.Object3D();
+//     longLampSpotLightTarget5.position.set(55, 0, 15.5); // Tentukan posisi target
+//     scene.add(longLampSpotLightTarget5);
+//     longLampSpotLight5.target = longLampSpotLightTarget5;
+
+//     // const longLampSpotLightHelper5 = new THREE.SpotLightHelper(longLampSpotLight5);
+//     // scene.add(longLampSpotLightHelper5);
+
+//     longLampSpotLight5.shadow.mapSize.width = 1024;
+//     longLampSpotLight5.shadow.mapSize.height = 1024;
+//     longLampSpotLight5.shadow.camera.near = 0.5;
+//     longLampSpotLight5.shadow.camera.far = 500;
+
+//     const longLampSpotLight6 = new THREE.SpotLight(0x0a5c47, 30, 10, Math.PI / 2, 0.1);
+//     longLampSpotLight6.position.set(35, 5.5, 15.5);
+//     longLampSpotLight6.castShadow = true;
+//     scene.add(longLampSpotLight6);
+
+//     //spotlight target
+//     const longLampSpotLightTarget6 = new THREE.Object3D();
+//     longLampSpotLightTarget6.position.set(35, 0, 15.5); // Tentukan posisi target
+//     scene.add(longLampSpotLightTarget6);
+//     longLampSpotLight6.target = longLampSpotLightTarget6;
+
+//     // const longLampSpotLightHelper6 = new THREE.SpotLightHelper(longLampSpotLight6);
+//     // scene.add(longLampSpotLightHelper6);
+
+//     longLampSpotLight6.shadow.mapSize.width = 1024;
+//     longLampSpotLight6.shadow.mapSize.height = 1024;
+//     longLampSpotLight6.shadow.camera.near = 0.5;
+//     longLampSpotLight6.shadow.camera.far = 500;
+
+//     const longLampSpotLight7 = new THREE.SpotLight(0x0a5c47, 30, 10, Math.PI / 2, 0.1);
+//     longLampSpotLight7.position.set(55, 5.5, 25);
+//     longLampSpotLight7.castShadow = true;
+//     scene.add(longLampSpotLight7);
+
+//     //spotlight target
+//     const longLampSpotLightTarget7 = new THREE.Object3D();
+//     longLampSpotLightTarget7.position.set(55, 0, 25); // Tentukan posisi target
+//     scene.add(longLampSpotLightTarget7);
+//     longLampSpotLight7.target = longLampSpotLightTarget7;
+
+//     // const longLampSpotLightHelper = new THREE.SpotLightHelper(longLampSpotLight);
+//     // scene.add(longLampSpotLightHelper);
+
+//     longLampSpotLight7.shadow.mapSize.width = 1024;
+//     longLampSpotLight7.shadow.mapSize.height = 1024;
+//     longLampSpotLight7.shadow.camera.near = 0.5;
+//     longLampSpotLight7.shadow.camera.far = 500;
+
+//     const longLampSpotLight8 = new THREE.SpotLight(0x0a5c47, 30, 10, Math.PI / 2, 0.1);
+//     longLampSpotLight8.position.set(55, 5.5, 50);
+//     longLampSpotLight8.castShadow = true;
+//     scene.add(longLampSpotLight8);
+
+//     //spotlight target
+//     const longLampSpotLightTarget8 = new THREE.Object3D();
+//     longLampSpotLightTarget8.position.set(55, 0, 50); // Tentukan posisi target
+//     scene.add(longLampSpotLightTarget8);
+//     longLampSpotLight8.target = longLampSpotLightTarget8;
+
+//     // const longLampSpotLightHelper8 = new THREE.SpotLightHelper(longLampSpotLight8);
+//     // scene.add(longLampSpotLightHelper8);
+
+//     longLampSpotLight8.shadow.mapSize.width = 1024;
+//     longLampSpotLight8.shadow.mapSize.height = 1024;
+//     longLampSpotLight8.shadow.camera.near = 0.5;
+//     longLampSpotLight8.shadow.camera.far = 500;
+
+//     const longLampSpotLight9 = new THREE.SpotLight(0x0a5c47, 10, 10, Math.PI / 2, 0.1);
+//     longLampSpotLight9.position.set(70, 5.5, 37);
+//     longLampSpotLight9.castShadow = true;
+//     scene.add(longLampSpotLight9);
+
+//     //spotlight target
+//     const longLampSpotLightTarget9 = new THREE.Object3D();
+//     longLampSpotLightTarget9.position.set(70, 0, 37); // Tentukan posisi target
+//     scene.add(longLampSpotLightTarget9);
+//     longLampSpotLight9.target = longLampSpotLightTarget9;
+
+//     // const longLampSpotLightHelper = new THREE.SpotLightHelper(longLampSpotLight);
+//     // scene.add(longLampSpotLightHelper);
+
+//     longLampSpotLight9.shadow.mapSize.width = 1024;
+//     longLampSpotLight9.shadow.mapSize.height = 1024;
+//     longLampSpotLight9.shadow.camera.near = 0.5;
+//     longLampSpotLight9.shadow.camera.far = 500;
+
+//     const longLampSpotLight10 = new THREE.SpotLight(0x0a5c47, 10, 10, Math.PI / 2, 0.1);
+//     longLampSpotLight10.position.set(40, 5.5, 37);
+//     longLampSpotLight10.castShadow = true;
+//     scene.add(longLampSpotLight10);
+
+//     //spotlight target
+//     const longLampSpotLightTarget10 = new THREE.Object3D();
+//     longLampSpotLightTarget10.position.set(40, 0, 37); // Tentukan posisi target
+//     scene.add(longLampSpotLightTarget10);
+//     longLampSpotLight10.target = longLampSpotLightTarget10;
+
+//     // const longLampSpotLightHelper = new THREE.SpotLightHelper(longLampSpotLight);
+//     // scene.add(longLampSpotLightHelper);
+
+//     longLampSpotLight10.shadow.mapSize.width = 1024;
+//     longLampSpotLight10.shadow.mapSize.height = 1024;
+//     longLampSpotLight10.shadow.camera.near = 0.5;
+//     longLampSpotLight10.shadow.camera.far = 500;
+
+//     const longLampSpotLight11 = new THREE.SpotLight(0x0a5c47, 30, 10, Math.PI / 2, 0.1);
+//     longLampSpotLight11.position.set(72.5, 5.5, 78);
+//     longLampSpotLight11.castShadow = true;
+//     scene.add(longLampSpotLight11);
+
+//     //spotlight target
+//     const longLampSpotLightTarget11 = new THREE.Object3D();
+//     longLampSpotLightTarget11.position.set(72.5, 0, 78); // Tentukan posisi target
+//     scene.add(longLampSpotLightTarget11);
+//     longLampSpotLight11.target = longLampSpotLightTarget11;
+
+//     // const longLampSpotLightHelper = new THREE.SpotLightHelper(longLampSpotLight);
+//     // scene.add(longLampSpotLightHelper);
+
+//     longLampSpotLight11.shadow.mapSize.width = 1024;
+//     longLampSpotLight11.shadow.mapSize.height = 1024;
+//     longLampSpotLight11.shadow.camera.near = 0.5;
+//     longLampSpotLight11.shadow.camera.far = 500;
 
 // mirror
 let geometry = new THREE.PlaneGeometry(5, 5);
@@ -845,6 +719,21 @@ verticalMirror.position.set(87.8, 3, 4.25);
 verticalMirror.rotation.y = -Math.PI / 4;
 scene.add(verticalMirror);
 
+// flashlight
+const flashlight = new THREE.SpotLight(0xffffff, 100, 50, Math.PI / 8, 0.1);
+flashlight.castShadow = true;
+flashlight.shadow.mapSize.width = 1024;
+flashlight.shadow.mapSize.height = 1024;
+flashlight.shadow.camera.near = 0.5;
+flashlight.shadow.camera.far = 500;
+flashlight.shadow.bias = -0.0001;
+flashlight.visible = false;
+player.camera.add(flashlight);
+player.camera.add(flashlight.target);
+flashlight.target.position.z = -7;
+flashlight.target.position.y = 0;
+
+
 //render
 let lastFlickerTime = 0;
 let prevTime = performance.now();
@@ -852,6 +741,7 @@ const raycaster = new THREE.Raycaster();
 const pickupDistance = 5; // Adjust as needed
 let emeraldPickedUp = false;
 let keyPickedUp = false;
+
 function animate() {
     if(emeraldPickedUp){
         document.getElementById('image-box1').style.backgroundImage = "url('objectResources/emerald/emerald.png')";
@@ -868,6 +758,14 @@ function animate() {
     let currentTime = performance.now();
     let dt = (currentTime - prevTime) / 1000;
     requestAnimationFrame(animate);
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "f") {
+            flashlight.visible = !flashlight.visible;
+        }
+      });
+
+      
 
     physics.update(dt, player, world);
     if (skeleton && player.isCloseTo(skeleton)) {
@@ -895,7 +793,7 @@ function animate() {
     if (emerald && player.isCloseTo(emerald, 5)) {
         let distance = player.distance(emerald);
         if (intersects.length > 0 && distance <= pickupDistance) {
-            unlockCellMessage.style.display = 'block';
+            pickupMessage.style.display = 'block';
                 document.addEventListener('keydown', function(event) {
                     if (event.key === 'e' || event.key === 'E') {
                         // Perform action to pick up the emerald
@@ -994,6 +892,7 @@ function animate() {
     key.rotation.y += 0.1;
 
     renderer.render(scene, player.controls.isLocked ? player.camera : orbitCamera);
+    
     stats.update();
 
     prevTime = currentTime;
@@ -1010,4 +909,5 @@ window.addEventListener("resize", () => {
 setupLights();
 createUI(world, player, scene);
 
+createUI(world, player);
 animate();
