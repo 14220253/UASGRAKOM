@@ -42,7 +42,7 @@ export class World extends THREE.Group {
         }
 
         for (let x = 5; x <= 5; x++) {
-            for (let z = 0; z <= 40; z++) {
+            for (let z = 0; z <= 10; z++) {
                 for (let y = 0; y <= 5; y++) { // 2
                     this.setBlockId(x,y,z, 3);
                 }
@@ -59,7 +59,15 @@ export class World extends THREE.Group {
 
 
         for (let x = 5; x <= 18; x++) {
-            for (let z = 10; z <= 50; z++) {
+            for (let z = 10; z <= 10; z++) {
+                for (let y = 0; y <= 5; y++) { // 4
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 18; x <= 18; x++) {
+            for (let z = 10; z <= 20; z++) {
                 for (let y = 0; y <= 5; y++) { // 4
                     this.setBlockId(x,y,z, 3);
                 }
@@ -131,7 +139,7 @@ export class World extends THREE.Group {
         }
 
         for (let x = 73; x <= 73; x++) {
-            for (let z = 10; z <= 28; z++) {
+            for (let z = 10; z <= 38; z++) {
                 for (let y = 0; y <= 5; y++) { // 13
                     this.setBlockId(x,y,z, 3);
                 }
@@ -146,16 +154,18 @@ export class World extends THREE.Group {
             }
         }
 
-        for (let x = 73; x <= 81; x++) {
-            for (let z = 25; z <= 40; z++) {
-                for (let y = 0; y <= 5; y++) { // 15
+        for (let x = 74; x <= 81; x++) {
+            for (let z = 40; z <= 40; z++) {
+                for (let y = 0; y <= 5; y++) { // 14
                     this.setBlockId(x,y,z, 3);
                 }
             }
         }
 
+
+
         for (let x = 73; x <= 79; x++) {
-            for (let z = 45; z <= 60; z++) {
+            for (let z = 45; z <= 45; z++) {
                 for (let y = 0; y <= 5; y++) { // 15
                     this.setBlockId(x,y,z, 3);
                 }
@@ -187,7 +197,15 @@ export class World extends THREE.Group {
         }
 
         for (let x = 73; x <= 79; x++) {
-            for (let z = 50; z <= 60; z++) {
+            for (let z = 50; z <= 50; z++) {
+                for (let y = 0; y <= 5; y++) { // 17
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
+
+        for (let x = 73; x <= 79; x++) {
+            for (let z = 60; z <= 60; z++) {
                 for (let y = 0; y <= 5; y++) { // 17
                     this.setBlockId(x,y,z, 3);
                 }
@@ -226,33 +244,9 @@ export class World extends THREE.Group {
             }
         }
 
-        for (let x = 2; x <= 80; x++) {
+        for (let x = 65; x <= 80; x++) {
             for (let z = 81; z <= 81; z++) {
                 for (let y = 0; y <= 5; y++) { // 22
-                    this.setBlockId(x,y,z, 3);
-                }
-            }
-        }
-
-        for (let x = 27; x <= 27; x++) {
-            for (let z = 68; z <= 80; z++) {
-                for (let y = 0; y <= 5; y++) { // 23
-                    this.setBlockId(x,y,z, 3);
-                }
-            }
-        }
-
-        for (let x = 27; x <= 37; x++) {
-            for (let z = 68; z <= 68; z++) {
-                for (let y = 0; y <= 5; y++) { // 24
-                    this.setBlockId(x,y,z, 3);
-                }
-            }
-        }
-
-        for (let x = 37; x <= 37; x++) {
-            for (let z = 53; z <= 68; z++) {
-                for (let y = 0; y <= 5; y++) { // 25
                     this.setBlockId(x,y,z, 3);
                 }
             }
@@ -274,15 +268,6 @@ export class World extends THREE.Group {
             }
         }
 
-
-        for (let x = 37; x <= 37; x++) {
-            for (let z = 21; z <= 50; z++) {
-                for (let y = 0; y <= 5; y++) { // 32
-                    this.setBlockId(x,y,z, 3);
-                }
-            }
-        }
-
         for (let x = 37; x <= 55; x++) {
             for (let z = 21; z <= 21; z++) {
                 for (let y = 0; y <= 5; y++) { // 33
@@ -299,27 +284,17 @@ export class World extends THREE.Group {
             }
         }
 
-        for (let x = 5; x <= 37; x++) {
-            for (let z = 21; z <= 80; z++) {
+        for (let x = 37; x <= 37; x++) {
+            for (let z = 21; z <= 60; z++) {
                 for (let y = 0; y <= 5; y++) { // kotak bawah kiri
                     this.setBlockId(x,y,z, 3);
                 }
             }
         }
 
-        
-
-        for (let x = 10; x <= 18; x++) {
-            for (let z = 47; z <= 73; z++) {
-                for (let y = 0; y <= 5; y++) { // kotak bawah kanan
-                    this.setBlockId(x,y,z, 3);
-                }
-            }
-        }
-
-        for (let x = 17; x <= 21; x++) {
-            for (let z = 55; z <= 68; z++) {
-                for (let y = 0; y <= 5; y++) { // kotak bawah kanan#2
+        for (let x = 18; x <= 37; x++) {
+            for (let z = 21; z <= 21; z++) {
+                for (let y = 0; y <= 5; y++) { // kotak bawah kiri
                     this.setBlockId(x,y,z, 3);
                 }
             }
@@ -405,17 +380,17 @@ export class World extends THREE.Group {
             }
         }
 
-        for (let x = 30; x <= 64; x++) {
-            for (let z = 60; z <= 80; z++) {
+        for (let x = 64; x <= 64; x++) {
+            for (let z = 60; z <= 81; z++) {
                 for (let y = 0; y <= 5; y++) { // ruang bawahnya atas kanan
                     this.setBlockId(x,y,z, 3);
                 }
             }
         }
 
-        for (let x = 28; x <= 28; x++) {
-            for (let z = 5; z <= 5; z++) {
-                for (let y = 1; y <= 2; y++) { // bawahnya oldLamp
+        for (let x = 37; x <= 64; x++) {
+            for (let z = 60; z <= 60; z++) {
+                for (let y = 0; y <= 5; y++) { // ruang bawahnya atas kanan
                     this.setBlockId(x,y,z, 3);
                 }
             }
