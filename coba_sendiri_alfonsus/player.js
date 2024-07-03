@@ -5,7 +5,8 @@ export class Player {
     radius = 0.5;
     height = 1.75;
     jumpSpeed = 9;
-    maxSpeed = 20;
+    maxSpeed = 10;
+    multiplier = 1;
     onGround = false;
     input = new THREE.Vector3();
     velocity = new THREE.Vector3();
@@ -106,16 +107,23 @@ export class Player {
 
         switch(event.code) {
             case 'KeyW':
-                this.input.z = this.maxSpeed;
+                this.input.z = this.maxSpeed * this.multiplier;
                 break;
             case 'KeyA':
-                this.input.x = -this.maxSpeed;
+                this.input.x = -this.maxSpeed * this.multiplier;
                 break;
             case 'KeyS':
-                this.input.z = -this.maxSpeed;
+                this.input.z = -this.maxSpeed * this.multiplier;
                 break;
             case 'KeyD':
-                this.input.x = this.maxSpeed;
+                this.input.x = this.maxSpeed * this.multiplier;
+                break; 
+            case 'ShiftLeft':
+                this.multiplier = 0.5;
+                break; 
+            case 'AltLeft':
+                this.multiplier = 2;
+                this.camera.fov += 50;
                 break; 
             case 'KeyR':
                 this.position.set(64,100,64);
@@ -146,7 +154,14 @@ export class Player {
                 break;
             case 'KeyD':
                 this.input.x = 0;
-                break;            
+                break;     
+            case 'ShiftLeft':
+                this.multiplier = 1;
+                break;        
+            case 'AltLeft':
+                this.multiplier = 1;
+                this.camera.fov += 50;
+                break; 
         }
     }
 

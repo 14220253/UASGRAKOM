@@ -43,7 +43,7 @@ const physics = new Physics(scene);
 function setupLights() {
     const moon = new THREE.DirectionalLight(0x6666dd, 0.7);
     moon.position.set(125,125,125);
-    moon.castShadow = true;
+    // moon.castShadow = true;
     moon.shadow.camera.left = -100;
     moon.shadow.camera.right = 100;
     moon.shadow.camera.bottom = -100;
@@ -853,7 +853,6 @@ const pickupDistance = 5; // Adjust as needed
 let emeraldPickedUp = false;
 let keyPickedUp = false;
 function animate() {
-
     if(emeraldPickedUp){
         document.getElementById('image-box1').style.backgroundImage = "url('objectResources/emerald/emerald.png')";
     }
