@@ -43,7 +43,7 @@ const physics = new Physics(scene);
 function setupLights() {
     const moon = new THREE.DirectionalLight(0x6666dd, 0.7);
     moon.position.set(125,125,125);
-    // moon.castShadow = true;
+    moon.castShadow = true;
     moon.shadow.camera.left = -100;
     moon.shadow.camera.right = 100;
     moon.shadow.camera.bottom = -100;
@@ -148,18 +148,18 @@ for(let i = 8; i < 13; i+= 1.5){
         scene.add(barrel);
     });
 }
-let candle;
-generateGLTF("objectResources/candle/scene.gltf", (candle1) => {
-    candle = candle1;
-    candle.scale.setScalar(1.5);
-    candle.position.set(66, 56.4, 60);
-    candle.rotation.y = 3.16
-    scene.add(candle);
+let table;
+generateGLTF("objectResources/candle/scene.gltf", (table1) => {
+    table = table1;
+    table.scale.setScalar(1.5);
+    table.position.set(66, 56.4, 60);
+    table.rotation.y = 3.16
+    scene.add(table);
     
-    const candlePointLight = new THREE.PointLight(0xFC7703, 0.55, 0, 0.5);
+    const candlePointLight = new THREE.PointLight(0xFC7703, 0.55, 0, 1);
     candlePointLight.position.set(0.5, 1.6, -0.5);
     candlePointLight.castShadow = true;
-    candle.add(candlePointLight);
+    table.add(candlePointLight);
 });
 
 let flower;
@@ -168,15 +168,32 @@ generateGLTF("objectResources/flower/scene.gltf", (flower1) => {
     flower.scale.setScalar(1);
     flower.position.set(71, 56.2, 68.5);
     flower.rotation.x = 0.5;
-    scene.add(candle);
+    scene.add(flower);
 });
 
-let cobweb;
+let candleTable;
+generateGLTF("objectResources/bedCandle/scene.gltf", (candle1) => {
+    candleTable = candle1;
+    candleTable.scale.setScalar(0.005);
+    candleTable.position.set(71, 57.6, 66.2);
+    scene.add(candleTable);
+    
+    const candlePointLight = new THREE.PointLight(0xFFA703, 0.5, 0, 2);
+    candlePointLight.position.set(0, 1, 0);
+    candlePointLight.castShadow = true;
+    candleTable.add(candlePointLight);
+});
+let candleBed;
 generateGLTF("objectResources/bedCandle/scene.gltf", (candle2) => {
-    cobweb = candle2;
-    cobweb.scale.setScalar(0.03);
-    cobweb.position.set(71, 57, 66);
-    scene.add(cobweb);
+    candleBed = candle2;
+    candleBed.scale.setScalar(0.005);
+    candleBed.position.set(71, 57.6, 63);
+    scene.add(candleBed);
+    
+    const candlePointLight = new THREE.PointLight(0xFFA703, 0.5, 0, 2);
+    candlePointLight.position.set(0, 1, 0);
+    candlePointLight.castShadow = true;
+    candleBed.add(candlePointLight);
 });
 
 generateOBJ("objectResources/skeleton/SubTool-0-3517926.OBJ", (skeleton) => {

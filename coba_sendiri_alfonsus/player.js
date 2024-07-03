@@ -8,6 +8,7 @@ export class Player {
     maxSpeed = 10;
     multiplier = 1;
     onGround = false;
+    headTilted = false;
     input = new THREE.Vector3();
     velocity = new THREE.Vector3();
     #worldVelocity = new THREE.Vector3();
@@ -118,12 +119,26 @@ export class Player {
             case 'KeyD':
                 this.input.x = this.maxSpeed * this.multiplier;
                 break; 
+            case 'KeyQ':
+                if (!this.headTilted) {
+                    this.camera.rotateZ(0.7);
+                    this.headTilted = true;
+                }
+                break; 
+            case 'KeyE':
+                if (!this.headTilted) {
+                    this.camera.rotateZ(-0.7);
+                    this.headTilted = true;
+                }
+                break; 
+            case 'KeyZ':
+                this.camera.zoom = 10;
+                break; 
             case 'ShiftLeft':
                 this.multiplier = 0.5;
                 break; 
             case 'AltLeft':
                 this.multiplier = 2;
-                this.camera.fov += 50;
                 break; 
             case 'KeyR':
                 this.position.set(64,100,64);
@@ -155,6 +170,17 @@ export class Player {
             case 'KeyD':
                 this.input.x = 0;
                 break;     
+            case 'KeyQ':
+                this.camera.rotateZ(-0.7);
+                this.headTilted = false;
+                break; 
+            case 'KeyE':
+                this.camera.rotateZ(0.7);
+                this.headTilted = false;
+                break; 
+            case 'KeyZ':
+                this.camera.zoom = 1;
+                break; 
             case 'ShiftLeft':
                 this.multiplier = 1;
                 break;        

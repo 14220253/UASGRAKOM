@@ -50,13 +50,47 @@ export class World extends THREE.Group {
 
         // tinggi(y) wallnya dibuat 10, kalo floor tingginya(y) dibuat 0
         this.InitializeTerrain();
-        // for (let x = 5; x <= 55; x++) {
-        //     for (let z = 0; z <= 0; z++) {
-        //         for (let y = 0; y <= 5; y++) { // 1
-        //             this.setBlockId(x,y,z, 3);
-        //         }
-        //     }
-        // }
+        
+
+        // this.generateResources(rng);
+        this.generateTerrain(rng);
+        this.generateHouse();
+        this.generateTrees(rng);
+        this.generateClouds(rng);
+        this.generateDungeon();
+        
+        this.generateMeshes();
+    }
+
+    /**
+     * initializing the world terrain data
+     */
+    InitializeTerrain() {
+        this.data = [];
+        for (let x = 0; x < this.size.width; x++) {
+            const slice = [];
+            for (let y = 0; y < this.size.height; y++) {
+                const row = [];
+                for (let z = 0; z < this.size.width; z++) {
+                    row.push({
+                        id: blocks.empty.id,
+                        instanceId: null
+                    });
+                }
+                slice.push(row);
+            }
+            this.data.push(slice);
+        }
+    }
+
+    generateDungeon() {
+        for (let x = 5; x <= 55; x++) {
+            for (let z = 0; z <= 0; z++) {
+                for (let y = 0; y <= 5; y++) { // 1
+                    this.setBlockId(x,y,z, 3);
+                }
+            }
+        }
 
         for (let x = 5; x <= 5; x++) {
             for (let z = 0; z <= 10; z++) {
@@ -429,32 +463,28 @@ export class World extends THREE.Group {
             }
         }
 
-        // this.generateResources(rng);
-        this.generateTerrain(rng);
-        this.generateHouse();
-        this.generateTrees(rng);
-        this.generateClouds(rng);
-        this.generateMeshes();
-    }
-
-    /**
-     * initializing the world terrain data
-     */
-    InitializeTerrain() {
-        this.data = [];
-        for (let x = 0; x < this.size.width; x++) {
-            const slice = [];
-            for (let y = 0; y < this.size.height; y++) {
-                const row = [];
-                for (let z = 0; z < this.size.width; z++) {
-                    row.push({
-                        id: blocks.empty.id,
-                        instanceId: null
-                    });
-                }
-                slice.push(row);
+        for(let y = 6; y <= 53; y++) {
+            for(let z = 66; z  <= 69; z++) {
+                this.setBlockId(64, y, z, 3);
             }
-            this.data.push(slice);
+        }
+        for(let y = 6; y <= 53; y++) {
+            for(let z = 66; z  <= 69; z++) {
+                this.setBlockId(66, y, z, 3);
+            }
+        }
+        for(let y = 6; y <= 53; y++) {
+            this.setBlockId(65, y, 69, 3);
+        }
+        for(let y = 6; y <= 53; y++) {
+            this.setBlockId(65, y, 66, 3);
+        }
+        
+        for(let y = 3; y <= 53; y++) {
+            this.setBlockId(65, y, 67, 0);
+        }
+        for(let y = 3; y <= 53; y++) {
+            this.setBlockId(65, y, 68, 0);
         }
     }
 
@@ -1056,7 +1086,15 @@ export class World extends THREE.Group {
             54,55,54,0,
             54,55,55,0,
             54,54,54,0,
-            54,54,55,0,]
+            54,54,55,0,
+            55,56,54,0,
+            55,56,55,0,
+            55,55,54,0,
+            55,55,55,0,
+            55,54,54,0,
+            55,54,55,0,
+            55,53,54,0,
+            55,53,55,0,]
 
         for (let i = 53; i > 3; i--) {
             arr.push(54, i, 54, 0);
