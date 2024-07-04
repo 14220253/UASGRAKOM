@@ -20,6 +20,8 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0x000000); //0x80a0e0
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMappingExposure =4;
+renderer.toneMapping = THREE.toneMappingExposure;
 document.body.appendChild(renderer.domElement);
 
 //Camera
