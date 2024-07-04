@@ -8,7 +8,7 @@ export function createUI(world, player, scene) {
     playerFolder.add(player, 'maxSpeed', 1, 20).name('Max Speed');
     playerFolder.add(player.cameraHelper, 'visible').name('Show Camera Helper');
     playerFolder.add(player.boundsHelper, 'visible').name('Show Bound Helper');
-    playerFolder.add(scene.shadowHelper, 'visible').name('Show Shadow Helper');
+    // playerFolder.add(scene.shadowHelper, 'visible').name('Show Shadow Helper');
     
     const terrainFolder = gui.addFolder("Terrain");
     terrainFolder.add(world.size, 'width', 8, 512, 1).name("Width");
