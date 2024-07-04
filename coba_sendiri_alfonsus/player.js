@@ -125,7 +125,7 @@ export class Player {
                     this.headTilted = true;
                 }
                 break; 
-            case 'KeyE':
+            case 'KeyT':
                 if (!this.headTilted) {
                     this.camera.rotateZ(-0.7);
                     this.headTilted = true;
@@ -174,7 +174,7 @@ export class Player {
                 this.camera.rotateZ(-0.7);
                 this.headTilted = false;
                 break; 
-            case 'KeyE':
+            case 'KeyT':
                 this.camera.rotateZ(0.7);
                 this.headTilted = false;
                 break; 

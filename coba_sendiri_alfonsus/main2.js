@@ -154,7 +154,7 @@ let table;
 generateGLTF("objectResources/candle/scene.gltf", (table1) => {
     table = table1;
     table.scale.setScalar(1.5);
-    table.position.set(66, 56.4, 60);
+    table.position.set(66, 63.4, 60);
     table.rotation.y = 3.16
     scene.add(table);
     
@@ -168,7 +168,7 @@ let flower;
 generateGLTF("objectResources/flower/scene.gltf", (flower1) => {
     flower = flower1;
     flower.scale.setScalar(1);
-    flower.position.set(71, 56.2, 68.5);
+    flower.position.set(71, 63.2, 68.5);
     flower.rotation.x = 0.5;
     scene.add(flower);
 });
@@ -177,7 +177,7 @@ let candleTable;
 generateGLTF("objectResources/bedCandle/scene.gltf", (candle1) => {
     candleTable = candle1;
     candleTable.scale.setScalar(0.005);
-    candleTable.position.set(71, 57.6, 66.2);
+    candleTable.position.set(71, 64.6, 66.2);
     scene.add(candleTable);
     
     const candlePointLight = new THREE.PointLight(0xFFA703, 0.5, 0, 2);
@@ -189,7 +189,7 @@ let candleBed;
 generateGLTF("objectResources/bedCandle/scene.gltf", (candle2) => {
     candleBed = candle2;
     candleBed.scale.setScalar(0.005);
-    candleBed.position.set(71, 57.6, 63);
+    candleBed.position.set(71, 64.6, 63);
     scene.add(candleBed);
     
     const candlePointLight = new THREE.PointLight(0xFFA703, 0.5, 0, 2);
@@ -200,7 +200,7 @@ generateGLTF("objectResources/bedCandle/scene.gltf", (candle2) => {
 
 generateOBJ("objectResources/skeleton/SubTool-0-3517926.OBJ", (skeleton) => {
     skeleton.scale.setScalar( 0.5 );
-    skeleton.position.set(73, 57.8, 61.5);
+    skeleton.position.set(73, 64.8, 61.5);
     skeleton.rotation.x = -Math.PI / 2;
     skeleton.rotation.y = 0; 
     skeleton.rotation.z = 0;
